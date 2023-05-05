@@ -23,7 +23,7 @@ speed = Vector2( 700, 1350 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -1, -42 )
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 10, 10 )
 process_mode = 0
 limit_bottom = 852
 limit_smoothed = true
