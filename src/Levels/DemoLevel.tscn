@@ -34,9 +34,9 @@ scale = Vector2( 5, 5 )
 layer = -1
 
 [node name="TextureRect" type="TextureRect" parent="Background2"]
-margin_left = -6985.0
-margin_top = -6044.0
-margin_right = 7460.0
-margin_bottom = 1818.0
+margin_left = 8.0
+margin_top = -4.0
+margin_right = 1928.0
+margin_bottom = 1076.0
 texture = ExtResource( 5 )
 expand = true
