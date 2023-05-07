@@ -18,13 +18,13 @@ extents = Vector2( 52.2752, 10.7155 )
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 4
 script = ExtResource( 1 )
-speed = Vector2( 1000, 2000 )
-gravity = 6000.0
+speed = Vector2( 2500, 5000 )
+gravity = 10000.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -1, -42 )
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 10, 10 )
 process_mode = 0
 limit_bottom = 852
 limit_smoothed = true
