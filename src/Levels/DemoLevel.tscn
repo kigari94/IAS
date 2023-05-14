@@ -1,12 +1,29 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Levels/demo_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Levels/DemoLevelBackground.tres" type="TileSet" id=3]
 [ext_resource path="res://src/Actors/Player2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/DemoBackground.PNG" type="Texture" id=5]
+[ext_resource path="res://assets/Backgrounds/BG_02.png" type="Texture" id=5]
+[ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=6]
 
 [node name="DemoLevel" type="Node2D"]
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="UserInterface" parent="UserInterface" instance=ExtResource( 6 )]
+
+[node name="BackgroundImage" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="BackgroundImage"]
+margin_left = 8.0
+margin_top = -4.0
+margin_right = 1928.0
+margin_bottom = 1076.0
+texture = ExtResource( 5 )
+expand = true
 
 [node name="Ground" type="TileMap" parent="."]
 position = Vector2( 3, 0 )
@@ -29,14 +46,3 @@ scale = Vector2( 5, 5 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -1736, 61 )
 scale = Vector2( 5, 5 )
-
-[node name="Background2" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="TextureRect" type="TextureRect" parent="Background2"]
-margin_left = 8.0
-margin_top = -4.0
-margin_right = 1928.0
-margin_bottom = 1076.0
-texture = ExtResource( 5 )
-expand = true
