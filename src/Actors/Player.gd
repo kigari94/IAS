@@ -5,14 +5,15 @@ extends Actor
 
 # not in use for now
 #
-#func _on_StompDetector_area_entered(area: Area2D) -> void:
+#func _on_AttackDetector_area_entered(area: Area2D) -> void:
 #	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 #
 #
-#func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
-#	die()
+func _on_DangerDetector_area_entered(body: PhysicsBody2D) -> void:
+	die()
+	#_on_Timer_timeout()
 
-# Godot function that handels physics calculations, it is caled every frame
+# Godot function that handels physics calculations, it is called every frame
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction: = get_direction()
@@ -51,6 +52,9 @@ func calculate_move_velocity(
 #	return Vector2(linear_velocity.x, stomp_jump)
 #
 #
-#func die() -> void:
-##	PlayerData.deaths += 1
-#	queue_free()
+func die() -> void:
+	queue_free()
+
+
+# func _on_Timer_timeout():
+	# respawn()
