@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/Themes/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/Screens/WinnerScreen.gd" type="Script" id=2]
 [ext_resource path="res://src/UserInterface/Title.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/UserInterface/ChangeSceneButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UserInterface/QuitButton.tscn" type="PackedScene" id=6]
@@ -10,6 +11,8 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+script = ExtResource( 2 )
+player = "Player"
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -18,7 +21,7 @@ texture = ExtResource( 7 )
 expand = true
 stretch_mode = 2
 
-[node name="Title" parent="Background" instance=ExtResource( 4 )]
+[node name="Title" parent="." instance=ExtResource( 4 )]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -344.0
@@ -27,6 +30,15 @@ margin_right = 344.0
 margin_bottom = -191.0
 text = "We have a winner!
 Congratulations"
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -153.0
+margin_top = 379.0
+margin_right = 153.0
+margin_bottom = 434.0
+text = "Player %s"
 
 [node name="Menu" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -48,14 +60,3 @@ next_scene_path = "res://src/Screens/MainScreen.tscn"
 margin_top = 106.0
 margin_right = 538.0
 margin_bottom = 208.0
-
-[node name="Label" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -132.5
-margin_top = -152.0
-margin_right = 132.5
-margin_bottom = -97.0
-text = "Player %s"

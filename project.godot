@@ -24,10 +24,18 @@ config/name="IAS"
 run/main_scene="res://src/Screens/MainScreen.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerData="*res://src/Autoload/PlayerData.tscn"
+
 [display]
 
 window/size/width=1920
 window/size/height=1080
+
+[global]
+
+mask=false
 
 [gui]
 
@@ -73,9 +81,10 @@ pause={
 
 [layer_names]
 
-2d_physics/layer_1="player"
+2d_physics/layer_1="player1"
 2d_physics/layer_2="traps"
 2d_physics/layer_3="world"
+2d_physics/layer_4="player2"
 
 [physics]
 
