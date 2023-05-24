@@ -57,7 +57,7 @@ position = Vector2( 0, -48 )
 shape = SubResource( 3 )
 
 [node name="Weapon" parent="." instance=ExtResource( 3 )]
-position = Vector2( 92, 4 )
+position = Vector2( -187, -47 )
 
 [node name="AttackDetector" type="Area2D" parent="."]
 collision_mask = 16

@@ -2,6 +2,7 @@ extends Actor
 
 export var weapon_scene_path: = "res://src/Objects/Weapon.tscn"
 var player_weapon = null
+var input_enabled = true
 
 func _ready() -> void:
 	var weapon_instance = load(weapon_scene_path).instance()
@@ -20,7 +21,6 @@ func _ready() -> void:
 #
 func _on_DangerDetector_area_entered(body: PhysicsBody2D) -> void:
 	die()
-	$Timer.start()
 
 # Godot function that handels physics calculations, it is called every frame
 func _physics_process(delta: float) -> void:
@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack"): #and _current_state != _STATES.ATTACK:
+	if event.is_action_pressed("attack") and input_enabled == true: #and _current_state != _STATES.ATTACK:
 		#_current_state = _STATES.ATTACK
 		player_weapon.attack()
 		
@@ -56,24 +56,33 @@ func calculate_move_velocity(
 		is_jump_interrupted: bool
 	) -> Vector2:
 	var velocity: = linear_velocity
-	velocity.x = speed.x * direction.x
-	if direction.y != 0.0:
-		velocity.y = speed.y * direction.y
-	if is_jump_interrupted:
-		velocity.y = 0.0
+	if input_enabled == true:
+		velocity.x = speed.x * direction.x
+		if direction.y != 0.0:
+			velocity.y = speed.y * direction.y
+		if is_jump_interrupted:
+			velocity.y = 0.0
+	else: 
+		velocity = Vector2(0,0) 
 	return velocity
 	
 func die() -> void:
-	set_process(false)
+	input_enabled = false
+	$Timer.start()
+	#TODO Death animation
 
 
 func _on_Timer_timeout():
 	respawn()
-	print("helloworld")
+	
+func respawn_position():
+	#TODO: need to finde a way to calculate a good respawn position
+	return  Vector2(-1736, 61)
+	
 
 func respawn() -> void :
-	set_process(false)
-	
+	input_enabled = true
+	self.position = respawn_position()
 	
 #func on_player_weapon_attack_finished() -> void:
 	#_current_state = _STATES.IDLE

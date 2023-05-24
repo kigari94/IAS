@@ -52,6 +52,7 @@ position = Vector2( 0, -48 )
 shape = SubResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="WeaponSpawnLocation" type="Node2D" parent="."]
 position = Vector2( 0, -47 )
