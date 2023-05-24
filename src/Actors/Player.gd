@@ -49,6 +49,7 @@ func get_direction() -> Vector2:
 	)
 
 # Calculating a Vector2 from given linear velocity, direction and speed as velocity value for the player
+# handeling no move in case of death
 func calculate_move_velocity(
 		linear_velocity: Vector2,
 		direction: Vector2,
@@ -76,11 +77,16 @@ func _on_Timer_timeout():
 	respawn()
 	
 func respawn_position():
-	#TODO: need to finde a way to calculate a good respawn position
-	return  Vector2(-1736, 61)
+#TODO: need to finde a way to calculate a good respawn position
+	var new_position = Vector2()
+	var old_position = self.position
+	new_position.x = old_position.x - 2000
+	new_position.y = old_position.y - 2000
+	return  new_position
 	
 
 func respawn() -> void :
+	#TODO Respawn animation
 	input_enabled = true
 	self.position = respawn_position()
 	
