@@ -10,6 +10,7 @@
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=8]
 
 [node name="DemoLevel" type="Node2D"]
+position = Vector2( 0, -10 )
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 layer = 100
@@ -44,10 +45,14 @@ tile_data = PoolIntArray( -1834694, 0, 0, -1834686, 0, 1, -1834678, 0, 2, -13104
 [node name="Player2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1855, 102 )
 scale = Vector2( 5, 5 )
+speed = Vector2( 3000, 7000 )
+gravity = 15000.0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -1736, 61 )
 scale = Vector2( 5, 5 )
+speed = Vector2( 3000, 7000 )
+gravity = 15000.0
 
 [node name="PortalLeft" parent="." instance=ExtResource( 8 )]
 position = Vector2( -66271, -1046 )
