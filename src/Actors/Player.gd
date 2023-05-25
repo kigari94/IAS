@@ -11,14 +11,7 @@ func _ready() -> void:
 	player_weapon = weapon_anchor.get_child(0)
 	#player_weapon.connect("attack_finished", self, "on_player_weapon_attack_finished")
 
-#export var stomp_impulse: = 600.0
 
-# not in use for now
-#
-#func _on_AttackDetector_area_entered(area: Area2D) -> void:
-#	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
-#
-#
 func _on_DangerDetector_area_entered(body: PhysicsBody2D) -> void:
 	die()
 
