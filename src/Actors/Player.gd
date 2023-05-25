@@ -1,8 +1,12 @@
 extends Actor
 
 export var weapon_scene_path: = "res://src/Objects/Weapon.tscn"
+export(NodePath) var camera
+var main_camera =  null
 var player_weapon = null
 var input_enabled = true
+
+
 
 func _ready() -> void:
 	var weapon_instance = load(weapon_scene_path).instance()
@@ -10,6 +14,7 @@ func _ready() -> void:
 	weapon_anchor.add_child(weapon_instance)
 	player_weapon = weapon_anchor.get_child(0)
 	#player_weapon.connect("attack_finished", self, "on_player_weapon_attack_finished")
+	main_camera = get_node(camera)
 
 
 func _on_DangerDetector_area_entered(body: PhysicsBody2D) -> void:
@@ -63,6 +68,7 @@ func calculate_move_velocity(
 func die() -> void:
 	input_enabled = false
 	$Timer.start()
+	main_camera.set_target(2)
 	#TODO Death animation
 
 
