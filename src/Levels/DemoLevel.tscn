@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Levels/demo_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Objects/Void.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Levels/MainCamera.gd" type="Script" id=9]
 
 [node name="DemoLevel" type="Node2D"]
 position = Vector2( 0, -10 )
@@ -47,12 +48,14 @@ position = Vector2( 1855, 102 )
 scale = Vector2( 5, 5 )
 speed = Vector2( 3000, 7000 )
 gravity = 15000.0
+camera = NodePath("../MainCamera")
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -1736, 61 )
 scale = Vector2( 5, 5 )
 speed = Vector2( 3000, 7000 )
 gravity = 15000.0
+camera = NodePath("../MainCamera")
 
 [node name="PortalLeft" parent="." instance=ExtResource( 8 )]
 position = Vector2( -66271, -1046 )
@@ -66,3 +69,10 @@ playerName = "One"
 [node name="Void" parent="." instance=ExtResource( 7 )]
 position = Vector2( 0, 2475 )
 scale = Vector2( 1500, 10 )
+
+[node name="MainCamera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 10, 10 )
+script = ExtResource( 9 )
+target1 = NodePath("../Player")
+target2 = NodePath("../Player2")
