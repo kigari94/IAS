@@ -66,6 +66,7 @@ func die() -> void:
 	input_enabled = false
 	$Timer.start()
 	main_camera.set_target(1)
+	PlayerData.playerOneActive = true
 	#TODO Death animation
 
 
