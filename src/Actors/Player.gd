@@ -105,8 +105,8 @@ func get_move_direction() ->Vector2:
 	)
 func facing_direction(direction: float) -> void:
 	if direction > 0.0:
-		$WeaponSpawnLocation.scale.x = 1.0
-		self.scale.x = -5
+		#$WeaponSpawnLocation.scale.x = 1.0
+		self.scale.x = self.scale.y * 1 
 	elif direction < 0.0:
-		$WeaponSpawnLocation.scale.x = -1.0
-		self.scale.x = 5
+		#$WeaponSpawnLocation.scale.x = -1.0
+		self.scale.x = self.scale.y * -1 
