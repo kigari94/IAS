@@ -2,9 +2,12 @@ extends Actor
 
 export var weapon_scene_path: = "res://src/Objects/Weapon.tscn"
 export(NodePath) var camera
+
 var main_camera =  null
 var player_weapon = null
 var input_enabled = true
+
+onready var animation = $AnimationPlayer
 
 
 
@@ -35,6 +38,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack") and input_enabled == true: #and _current_state != _STATES.ATTACK:
 		#_current_state = _STATES.ATTACK
 		player_weapon.attack()
+		animation.play("Attack_Animation")
 		
 #func on_player_weapon_attack_finished() -> void:
 	#_current_state = _STATES.IDLE
@@ -69,6 +73,7 @@ func die() -> void:
 	input_enabled = false
 	$Timer.start()
 	main_camera.set_target(2)
+	PlayerData.playerOneActive = false
 	#TODO Death animation
 
 

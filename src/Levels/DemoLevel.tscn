@@ -22,10 +22,8 @@ layer = 100
 layer = -1
 
 [node name="TextureRect" type="TextureRect" parent="BackgroundImage"]
-margin_left = 8.0
-margin_top = -4.0
-margin_right = 1928.0
-margin_bottom = 1076.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 5 )
 expand = true
 
