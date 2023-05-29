@@ -12,10 +12,8 @@ onready var animation = $AnimationPlayer
 
 
 func _ready() -> void:
-	var weapon_instance = load(weapon_scene_path).instance()
-	var weapon_anchor = $WeaponSpawnLocation/WeaponAnchorPoint
-	weapon_anchor.add_child(weapon_instance)
-	player_weapon = weapon_anchor.get_child(0)
+
+
 	#player_weapon.connect("attack_finished", self, "on_player_weapon_attack_finished")
 	main_camera = get_node(camera)
 
@@ -37,12 +35,17 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack") and input_enabled == true: #and _current_state != _STATES.ATTACK:
 		#_current_state = _STATES.ATTACK
+		var weapon_instance = load(weapon_scene_path).instance()
+		var weapon_anchor = $WeaponSpawnLocation/WeaponAnchorPoint
+		weapon_anchor.add_child(weapon_instance)
+		player_weapon = weapon_anchor.get_child(0)
 		player_weapon.attack()
 		animation.play("Attack_Animation")
 		
-#func on_player_weapon_attack_finished() -> void:
+func _on_attack_finished(Attack_Animation):
+	player_weapon.queue_free()
 	#_current_state = _STATES.IDLE
-
+		
 # Calculating a Vector2, from the user inputs, as direction value for the player 
 func get_direction() -> Vector2:
 	return Vector2(
@@ -94,8 +97,6 @@ func respawn() -> void :
 	input_enabled = true
 	self.position = respawn_position()
 	
-#func on_player_weapon_attack_finished() -> void:
-	#_current_state = _STATES.IDLE
 	
 func get_move_direction() ->Vector2:
 	return Vector2(
@@ -104,7 +105,8 @@ func get_move_direction() ->Vector2:
 	)
 func facing_direction(direction: float) -> void:
 	if direction > 0.0:
-		$WeaponSpawnLocation.scale.x = 1.0
+		#$WeaponSpawnLocation.scale.x = 1.0
+		self.scale.x = self.scale.y * 1 
 	elif direction < 0.0:
-		$WeaponSpawnLocation.scale.x = -1.0
-	
+		#$WeaponSpawnLocation.scale.x = -1.0
+		self.scale.x = self.scale.y * -1 
