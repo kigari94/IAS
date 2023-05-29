@@ -15,7 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
 expand = true
-stretch_mode = 2
+stretch_mode = 1
 
 [node name="Menu" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -30,10 +30,17 @@ margin_bottom = 316.0
 [node name="PlayButton" parent="Menu" instance=ExtResource( 2 )]
 pause_mode = 2
 margin_right = 538.0
-margin_bottom = 102.0
+margin_bottom = 66.0
 next_scene_path = "res://src/Levels/DemoLevel.tscn"
 
+[node name="ChangeSceneButton" parent="Menu" instance=ExtResource( 2 )]
+margin_top = 70.0
+margin_right = 538.0
+margin_bottom = 137.0
+text = "Controls"
+next_scene_path = "res://src/UserInterface/ControlsOverlay.tscn"
+
 [node name="QuitButton" parent="Menu" instance=ExtResource( 4 )]
-margin_top = 106.0
+margin_top = 141.0
 margin_right = 538.0
 margin_bottom = 208.0
