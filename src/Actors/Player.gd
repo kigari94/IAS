@@ -23,19 +23,21 @@ func _ready() -> void:
 	main_camera = get_node(camera)
 
 
-func _on_DangerDetector_area_entered(body: PhysicsBody2D) -> void:
+func _on_DangerDetector_area_entered(_body: PhysicsBody2D) -> void:
 	die()
 
 # Godot function that handels physics calculations, it is called every frame
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction: = get_direction()
 	facing_direction(direction.x)
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	var snap: Vector2 = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
-	_velocity = move_and_slide_with_snap(
-		_velocity, snap, FLOOR_NORMAL, true
-	)
+	_velocity = move_and_slide_with_snap(_velocity, snap, FLOOR_NORMAL, true)
+	# play jump sound
+	if direction.y < 0:
+		sound.play()
+	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack") and input_enabled == true and _current_state != _STATES.ATTACK:
@@ -48,7 +50,7 @@ func _input(event: InputEvent) -> void:
 		sound.play()
 		animation.play("Attack_Animation")
 		
-func _on_attack_finished(Attack_Animation):
+func _on_attack_finished(_Attack_Animation):
 	player_weapon.queue_free()
 	_current_state = _STATES.IDLE
 		
@@ -85,7 +87,6 @@ func die() -> void:
 	PlayerData.playerOneActive = false
 	#TODO Death animation
 
-
 func _on_Timer_timeout():
 	respawn()
 	
@@ -97,18 +98,11 @@ func respawn_position():
 	new_position.y = old_position.y - 2000
 	return  new_position
 	
-
 func respawn() -> void :
 	#TODO Respawn animation
 	input_enabled = true
 	self.position = respawn_position()
 	
-	
-# func get_move_direction() ->Vector2:
-	#return Vector2(
-	#	Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 
-	#	0.0 
-	#)
 func facing_direction(direction: float) -> void:
 	if direction > 0.0:
 		#$WeaponSpawnLocation.scale.x = 1.0

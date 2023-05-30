@@ -18,7 +18,7 @@ func set_paused(value: bool) -> void:
 	scene_tree.paused = value
 	pause_overlay.visible = value
 
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	if PlayerData.playerOneActive:
 		playerOneHint.visible = true
 		playerTwoHint.visible = false

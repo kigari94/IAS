@@ -9,42 +9,50 @@ var input_enabled = true
 
 onready var animation = $AnimationPlayer
 
+var sound: AudioStreamPlayer
+
+
 
 
 func _ready() -> void:
-
+	sound = AudioStreamPlayer.new()
+	add_child(sound)
+	sound.stream = preload("res://assets/Sounds/pop.wav")
 
 	#player_weapon.connect("attack_finished", self, "on_player_weapon_attack_finished")
 	main_camera = get_node(camera)
 
 
-func _on_DangerDetector_area_entered(body: PhysicsBody2D) -> void:
+func _on_DangerDetector_area_entered(_body: PhysicsBody2D) -> void:
 	die()
 
 # Godot function that handels physics calculations, it is called every frame
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump_p2") and _velocity.y < 0.0
 	var direction: = get_direction()
 	facing_direction(direction.x)
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	var snap: Vector2 = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
-	_velocity = move_and_slide_with_snap(
-		_velocity, snap, FLOOR_NORMAL, true
-	)
+	_velocity = move_and_slide_with_snap(_velocity, snap, FLOOR_NORMAL, true)
+	# play jump sound
+	if direction.y < 0:
+		sound.play()
+	
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack_p2") and input_enabled == true: #and _current_state != _STATES.ATTACK:
-		#_current_state = _STATES.ATTACK
+	if event.is_action_pressed("attack_p2") and input_enabled == true and _current_state != _STATES.ATTACK:
+		_current_state = _STATES.ATTACK
 		var weapon_instance = load(weapon_scene_path).instance()
 		var weapon_anchor = $WeaponSpawnLocation/WeaponAnchorPoint
 		weapon_anchor.add_child(weapon_instance)
 		player_weapon = weapon_anchor.get_child(0)
 		player_weapon.attack()
+		sound.play()
 		animation.play("Attack_Animation")
 		
-func _on_attack_finished(Attack_Animation):
+func _on_attack_finished(_Attack_Animation):
 	player_weapon.queue_free()
-	#_current_state = _STATES.IDLE
+	_current_state = _STATES.IDLE
 		
 # Calculating a Vector2, from the user inputs, as direction value for the player 
 func get_direction() -> Vector2:
@@ -76,9 +84,8 @@ func die() -> void:
 	input_enabled = false
 	$Timer.start()
 	main_camera.set_target(1)
-	PlayerData.playerOneActive = true
+	PlayerData.playerOneActive = false
 	#TODO Death animation
-
 
 func _on_Timer_timeout():
 	respawn()
@@ -87,22 +94,15 @@ func respawn_position():
 #TODO: need to finde a way to calculate a good respawn position
 	var new_position = Vector2()
 	var old_position = self.position
-	new_position.x = old_position.x - 2000
+	new_position.x = old_position.x + 2000
 	new_position.y = old_position.y - 2000
 	return  new_position
 	
-
 func respawn() -> void :
 	#TODO Respawn animation
 	input_enabled = true
 	self.position = respawn_position()
 	
-	
-func get_move_direction() ->Vector2:
-	return Vector2(
-		Input.get_action_strength("move_right_p2") - Input.get_action_strength("move_left_p2"), 
-		0.0 
-	)
 func facing_direction(direction: float) -> void:
 	if direction > 0.0:
 		#$WeaponSpawnLocation.scale.x = 1.0
