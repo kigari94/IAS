@@ -10,7 +10,7 @@ func _ready():
 	# Setze die initiale Kamera-Zielposition
 	position = currentTarget.position
 
-func _process(delta):
+func _process(_delta):
 	# Überprüfe, ob der aktuelle Zielknoten noch existiert
 	if currentTarget != null:
 		# Aktualisiere die Kamera-Zielposition

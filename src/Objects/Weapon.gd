@@ -5,7 +5,7 @@ signal attack_finished
 #onready var animation_player = $AnimationPlayer
 
 
-func _on_animation_finished(anim_name):
+func _on_animation_finished(_anim_name):
 	#animation_player.play(("IDLE"))
 	emit_signal("attack_finished")
 

@@ -17,5 +17,5 @@ func teleport() -> void:
 	get_tree().change_scene_to(winnerScene)
 
 
-func _on_body_entered(body: PhysicsBody2D) -> void:
+func _on_body_entered(_body: PhysicsBody2D) -> void:
 	teleport()
