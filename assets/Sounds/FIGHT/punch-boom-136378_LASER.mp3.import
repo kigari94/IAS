@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/punch-boom-136378_LASER.mp3-483c0938b6abe771543fca21ce682bb8.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/FIGHT/punch-boom-136378_LASER.mp3"
+dest_files=[ "res://.import/punch-boom-136378_LASER.mp3-483c0938b6abe771543fca21ce682bb8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

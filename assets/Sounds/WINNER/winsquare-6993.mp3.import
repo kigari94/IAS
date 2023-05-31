@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/winsquare-6993.mp3-e0b4e43c0042a2c61ea0b6c9f5987548.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/WINNER/winsquare-6993.mp3"
+dest_files=[ "res://.import/winsquare-6993.mp3-e0b4e43c0042a2c61ea0b6c9f5987548.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

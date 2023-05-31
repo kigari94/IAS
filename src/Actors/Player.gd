@@ -9,15 +9,35 @@ var input_enabled = true
 
 onready var animation = $AnimationPlayer
 
-var sound: AudioStreamPlayer
-
-
-
+var backgroundSound: AudioStreamPlayer
+var jumpSound: AudioStreamPlayer
+var punchSound: AudioStreamPlayer
+var deathSound: AudioStreamPlayer
+var respawnSound: AudioStreamPlayer
 
 func _ready() -> void:
-	sound = AudioStreamPlayer.new()
-	add_child(sound)
-	sound.stream = preload("res://assets/Sounds/pop.wav")
+	# Sound init
+	backgroundSound = AudioStreamPlayer.new()
+	add_child(backgroundSound)
+	backgroundSound.stream = preload("res://assets/Sounds/background_music/short-chill-music-8561 (mp3cut.net).mp3")
+	backgroundSound.play()
+	
+	jumpSound = AudioStreamPlayer.new()
+	add_child(jumpSound)
+	#jumpSound.stream = preload("res://assets/Sounds/pop.wav")
+	jumpSound.stream = preload("res://assets/Sounds/JUMP/cartoon-jump-6462.mp3")
+	
+	punchSound = AudioStreamPlayer.new()
+	add_child(punchSound)
+	punchSound.stream = preload("res://assets/Sounds/FIGHT/punch-2-37333.mp3")
+	
+	deathSound = AudioStreamPlayer.new()
+	add_child(deathSound)
+	deathSound.stream = preload("res://assets/Sounds/TRAPS/negative_beeps-6008.mp3")
+	
+	respawnSound = AudioStreamPlayer.new()
+	add_child(respawnSound)
+	respawnSound.stream = preload("res://assets/Sounds/JUMP/dramatic-sound-effect-01-144470_RESPAWN.mp3")
 
 	#player_weapon.connect("attack_finished", self, "on_player_weapon_attack_finished")
 	main_camera = get_node(camera)
@@ -34,11 +54,22 @@ func _physics_process(_delta: float) -> void:
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	var snap: Vector2 = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
 	_velocity = move_and_slide_with_snap(_velocity, snap, FLOOR_NORMAL, true)
-	# play jump sound
-	if direction.y < 0:
-		sound.play()
 	
-
+	# PROBLEM: jump / idle gehen nicht immer -> vermutlich state machine erforderlich
+	if direction.x == 0 and direction.y > 0:
+		print(direction.y)
+		animation.play("Idle_Animation")
+		
+	# Jump Animation + play jump sound
+	if direction.y < 0:
+			animation.play("Jump_Animation")
+			jumpSound.play()
+				
+	# Run Animation
+	if direction.x < 0 or direction.x > 0:
+		animation.play("Run_Animation")
+	
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack") and input_enabled == true and _current_state != _STATES.ATTACK:
 		_current_state = _STATES.ATTACK
@@ -47,12 +78,15 @@ func _input(event: InputEvent) -> void:
 		weapon_anchor.add_child(weapon_instance)
 		player_weapon = weapon_anchor.get_child(0)
 		player_weapon.attack()
-		sound.play()
-		animation.play("Attack_Animation")
 		
-func _on_attack_finished(_Attack_Animation):
-	player_weapon.queue_free()
-	_current_state = _STATES.IDLE
+		# Fight Animation + play fight sound
+		animation.play("Fight_Animation")
+		punchSound.play()
+
+# PROBLEM: löst CRASH aus, das "free" ist vermutlich der Grund	
+#func _on_attack_finished(_Attack_Animation):
+#	player_weapon.queue_free()
+#	_current_state = _STATES.IDLE
 		
 # Calculating a Vector2, from the user inputs, as direction value for the player 
 func get_direction() -> Vector2:
@@ -86,6 +120,8 @@ func die() -> void:
 	main_camera.set_target(2)
 	PlayerData.playerOneActive = false
 	#TODO Death animation
+	animation.play("Death_Animation")
+	deathSound.play()
 
 func _on_Timer_timeout():
 	respawn()
@@ -100,6 +136,10 @@ func respawn_position():
 	
 func respawn() -> void :
 	#TODO Respawn animation
+	
+	# play respawn sound
+	respawnSound.play()
+	
 	input_enabled = true
 	self.position = respawn_position()
 	

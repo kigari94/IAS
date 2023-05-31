@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/matrix-jump-sound-fx-slower-77329.mp3-8d68dae7cc82f513bbff6713f736b971.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/JUMP/matrix-jump-sound-fx-slower-77329.mp3"
+dest_files=[ "res://.import/matrix-jump-sound-fx-slower-77329.mp3-8d68dae7cc82f513bbff6713f736b971.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
