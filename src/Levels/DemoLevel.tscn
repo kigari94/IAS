@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Levels/demo_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/Objects/Void.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Levels/MainCamera.gd" type="Script" id=9]
+[ext_resource path="res://src/Levels/Sound.gd" type="Script" id=10]
 
 [node name="DemoLevel" type="Node2D"]
 position = Vector2( 0, -10 )
@@ -77,3 +78,6 @@ smoothing_enabled = true
 script = ExtResource( 9 )
 target1 = NodePath("../Player")
 target2 = NodePath("../Player2")
+
+[node name="Sound" type="Node" parent="."]
+script = ExtResource( 10 )

@@ -9,19 +9,14 @@ var input_enabled = true
 
 onready var animation = $AnimationPlayer
 
-var backgroundSound: AudioStreamPlayer
+
 var jumpSound: AudioStreamPlayer
 var punchSound: AudioStreamPlayer
 var deathSound: AudioStreamPlayer
 var respawnSound: AudioStreamPlayer
 
 func _ready() -> void:
-	# Sound init
-	backgroundSound = AudioStreamPlayer.new()
-	add_child(backgroundSound)
-	backgroundSound.stream = preload("res://assets/Sounds/background_music/short-chill-music-8561 (mp3cut.net).mp3")
-	backgroundSound.play()
-	
+	# Sound init	
 	jumpSound = AudioStreamPlayer.new()
 	add_child(jumpSound)
 	#jumpSound.stream = preload("res://assets/Sounds/pop.wav")
