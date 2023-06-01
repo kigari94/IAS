@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/whip01-6952.mp3-680bc5c836ef6a2bf34bf48f2b7024e3.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/FIGHT/whip01-6952.mp3"
+dest_files=[ "res://.import/whip01-6952.mp3-680bc5c836ef6a2bf34bf48f2b7024e3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

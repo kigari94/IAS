@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/blaster-2-81267_LASER.mp3-7a793976b18fb387b931ba366e65b601.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/FIGHT/blaster-2-81267_LASER.mp3"
+dest_files=[ "res://.import/blaster-2-81267_LASER.mp3-7a793976b18fb387b931ba366e65b601.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

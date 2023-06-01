@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/gewonnen-87838.mp3-3ec9235ceb51a6dd882f285280f77e9e.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/WINNER/gewonnen-87838.mp3"
+dest_files=[ "res://.import/gewonnen-87838.mp3-3ec9235ceb51a6dd882f285280f77e9e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

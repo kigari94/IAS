@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ough-47202.mp3-32ad1090942780a3c918cf4487c7ae90.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/FIGHT/ough-47202.mp3"
+dest_files=[ "res://.import/ough-47202.mp3-32ad1090942780a3c918cf4487c7ae90.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
