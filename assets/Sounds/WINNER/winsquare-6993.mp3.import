@@ -11,5 +11,5 @@ dest_files=[ "res://.import/winsquare-6993.mp3-e0b4e43c0042a2c61ea0b6c9f5987548.
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
