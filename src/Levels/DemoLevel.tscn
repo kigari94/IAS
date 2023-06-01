@@ -43,7 +43,6 @@ format = 1
 tile_data = PoolIntArray( -1834694, 0, 0, -1834686, 0, 1, -1834678, 0, 2, -1310406, 0, 65536, -1310398, 0, 65537, -1310390, 0, 65538 )
 
 [node name="Player2" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.780392, 0.14902, 0.14902, 1 )
 position = Vector2( 1855, 102 )
 scale = Vector2( -5, 5 )
 speed = Vector2( 3000, 7000 )

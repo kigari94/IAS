@@ -91,8 +91,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Run_Animation":
 		print("run_end")
 		_current_state = _STATES.IDLE
-	if anim_name == "Idel_Animation":
-		print("Idel and")
+	if anim_name == "Idle_Animation":
+		print("Idle end")
 
 		
 # Calculating a Vector2, from the user inputs, as direction value for the player 
