@@ -11,5 +11,5 @@ dest_files=[ "res://.import/negative_beeps-6008.mp3-34d6dd852d22c6fb40fe1a2d2693
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

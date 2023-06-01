@@ -11,5 +11,5 @@ dest_files=[ "res://.import/dramatic-sound-effect-01-144470_RESPAWN.mp3-4aa46066
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
