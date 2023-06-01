@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/punch-2-37333.mp3-52da851e9952121af31126fcda76486d.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/FIGHT/punch-2-37333.mp3"
+dest_files=[ "res://.import/punch-2-37333.mp3-52da851e9952121af31126fcda76486d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

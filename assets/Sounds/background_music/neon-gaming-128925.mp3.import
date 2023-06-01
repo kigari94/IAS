@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/neon-gaming-128925.mp3-4782dd76f891855adc1a2309b41bf6b8.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/background_music/neon-gaming-128925.mp3"
+dest_files=[ "res://.import/neon-gaming-128925.mp3-4782dd76f891855adc1a2309b41bf6b8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

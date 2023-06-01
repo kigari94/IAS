@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fist-punch-or-kick-7171.mp3-e4705bf9fda55971840a5a9dff7d7fcb.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/FIGHT/fist-punch-or-kick-7171.mp3"
+dest_files=[ "res://.import/fist-punch-or-kick-7171.mp3-e4705bf9fda55971840a5a9dff7d7fcb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

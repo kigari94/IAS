@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dramatic-sound-effect-01-144470_RESPAWN.mp3-4aa4606646405529e6aa1001c5dc2575.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/JUMP/dramatic-sound-effect-01-144470_RESPAWN.mp3"
+dest_files=[ "res://.import/dramatic-sound-effect-01-144470_RESPAWN.mp3-4aa4606646405529e6aa1001c5dc2575.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

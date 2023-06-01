@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/Backgrounds/BG_01.png" type="Texture" id=1]
 [ext_resource path="res://src/UserInterface/ChangeSceneButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Screens/Sound.gd" type="Script" id=3]
 [ext_resource path="res://src/UserInterface/QuitButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Themes/ui_theme.tres" type="Theme" id=5]
 
@@ -44,3 +45,6 @@ next_scene_path = "res://src/UserInterface/ControlsOverlay.tscn"
 margin_top = 141.0
 margin_right = 538.0
 margin_bottom = 208.0
+
+[node name="Sound" type="Node" parent="."]
+script = ExtResource( 3 )
