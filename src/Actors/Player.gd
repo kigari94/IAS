@@ -55,19 +55,24 @@ func _physics_process(_delta: float) -> void:
 	var snap: Vector2 = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
 	_velocity = move_and_slide_with_snap(_velocity, snap, FLOOR_NORMAL, true)
 	
-	# PROBLEM: jump / idle gehen nicht immer -> vermutlich state machine erforderlich
-	if direction.x == 0 and direction.y > 0:
-		print(direction.y)
+	if direction == Vector2(0,0) and _current_state != _STATES.ATTACK:
+		_current_state = _STATES.IDLE
+	
+	if _current_state == _STATES.IDLE  and self.is_on_floor():
 		animation.play("Idle_Animation")
-		
+
 	# Jump Animation + play jump sound
-	if direction.y < 0:
-			animation.play("Jump_Animation")
-			jumpSound.play()
+	if direction.y < 0 and _current_state != _STATES.ATTACK:
+		animation.play("Jump_Animation")
+		jumpSound.play()
+		
 				
 	# Run Animation
-	if direction.x < 0 or direction.x > 0:
+	if ((direction.x < 0 or direction.x > 0) and _current_state != _STATES.ATTACK and self.is_on_floor()):
+		print("run")
+		_current_state = _STATES.MOVE
 		animation.play("Run_Animation")
+
 	
 	
 func _input(event: InputEvent) -> void:
@@ -78,15 +83,22 @@ func _input(event: InputEvent) -> void:
 		weapon_anchor.add_child(weapon_instance)
 		player_weapon = weapon_anchor.get_child(0)
 		player_weapon.attack()
-		
-		# Fight Animation + play fight sound
+	# Fight Animation + play fight sound
 		animation.play("Fight_Animation")
 		punchSound.play()
 
-# PROBLEM: löst CRASH aus, das "free" ist vermutlich der Grund	
-#func _on_attack_finished(_Attack_Animation):
-#	player_weapon.queue_free()
-#	_current_state = _STATES.IDLE
+func _on_AnimationPlayer_animation_finished(anim_name):
+	print(anim_name)
+	if anim_name == "Fight_Animation":
+		print("fight end")
+		player_weapon.queue_free()
+		_current_state = _STATES.IDLE
+	if anim_name == "Run_Animation":
+		print("run_end")
+		_current_state = _STATES.IDLE
+	if anim_name == "Idel_Animation":
+		print("Idel and")
+
 		
 # Calculating a Vector2, from the user inputs, as direction value for the player 
 func get_direction() -> Vector2:
@@ -150,3 +162,5 @@ func facing_direction(direction: float) -> void:
 	elif direction < 0.0:
 		#$WeaponSpawnLocation.scale.x = -1.0
 		self.scale.x = self.scale.y * -1 
+
+
