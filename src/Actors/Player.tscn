@@ -169,7 +169,7 @@ one_shot = true
 position = Vector2( 0, -47 )
 
 [node name="WeaponAnchorPoint" type="Node2D" parent="WeaponSpawnLocation"]
-position = Vector2( 78, 2 )
+position = Vector2( 160, 2 )
 
 [node name="Attack" type="Sprite" parent="."]
 visible = false
