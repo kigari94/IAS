@@ -31,20 +31,27 @@ margin_bottom = 316.0
 [node name="PlayButton" parent="Menu" instance=ExtResource( 2 )]
 pause_mode = 2
 margin_right = 538.0
-margin_bottom = 66.0
+margin_bottom = 61.0
 next_scene_path = "res://src/Levels/DemoLevel.tscn"
 
 [node name="ChangeSceneButton" parent="Menu" instance=ExtResource( 2 )]
-margin_top = 70.0
+margin_top = 65.0
 margin_right = 538.0
-margin_bottom = 137.0
+margin_bottom = 126.0
 text = "Controls"
 next_scene_path = "res://src/UserInterface/ControlsOverlay.tscn"
 
-[node name="QuitButton" parent="Menu" instance=ExtResource( 4 )]
-margin_top = 141.0
+[node name="ChangeSceneButton2" parent="Menu" instance=ExtResource( 2 )]
+margin_top = 130.0
 margin_right = 538.0
-margin_bottom = 208.0
+margin_bottom = 191.0
+text = "Options"
+next_scene_path = "res://src/UserInterface/OptionsOverlay.tscn"
+
+[node name="QuitButton" parent="Menu" instance=ExtResource( 4 )]
+margin_top = 195.0
+margin_right = 538.0
+margin_bottom = 256.0
 
 [node name="Sound" type="Node" parent="."]
 script = ExtResource( 3 )
