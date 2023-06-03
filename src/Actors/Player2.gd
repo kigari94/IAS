@@ -115,7 +115,7 @@ func die() -> void:
 	input_enabled = false
 	$Timer.start()
 	main_camera.set_target(1)
-	PlayerData.playerOneActive = false
+	PlayerData.playerOneActive = true
 	#TODO Death animation
 	animation.play("Death_Animation")
 	deathSound.play()

@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/UserInterface/OptionsOverlay.gd" type="Script" id=1]
+[ext_resource path="res://assets/Themes/ui_theme.tres" type="Theme" id=2]
+[ext_resource path="res://src/UserInterface/Title.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UserInterface/ChangeSceneButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/Sounds/background_music/space-chillout-14194.mp3" type="AudioStream" id=5]
+
+[node name="OptionsOverlay" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.192157, 0.184314, 0.184314, 0.254902 )
+
+[node name="TitleVolume" parent="ColorRect" instance=ExtResource( 3 )]
+margin_left = -308.0
+margin_top = 72.0
+margin_right = 304.0
+margin_bottom = 145.0
+text = "Volume Settings"
+
+[node name="MasterVolume" type="HSlider" parent="ColorRect"]
+margin_left = 399.0
+margin_top = 346.0
+margin_right = 1522.0
+margin_bottom = 362.0
+min_value = -50.0
+max_value = 0.0
+value = -25.0
+
+[node name="MusicVolume" type="HSlider" parent="ColorRect"]
+visible = false
+margin_left = 399.0
+margin_top = 493.0
+margin_right = 1522.0
+margin_bottom = 509.0
+min_value = -50.0
+max_value = 0.0
+value = -25.0
+
+[node name="SoundsVolume" type="HSlider" parent="ColorRect"]
+visible = false
+margin_left = 399.0
+margin_top = 653.0
+margin_right = 1522.0
+margin_bottom = 669.0
+min_value = -50.0
+max_value = 0.0
+value = -25.0
+
+[node name="LabelMaster" type="Label" parent="ColorRect"]
+margin_left = 411.0
+margin_top = 268.0
+margin_right = 631.0
+margin_bottom = 323.0
+text = "Master "
+
+[node name="LabelMusic" type="Label" parent="ColorRect"]
+visible = false
+margin_left = 411.0
+margin_top = 415.0
+margin_right = 631.0
+margin_bottom = 470.0
+text = "Music"
+
+[node name="LabelSounds" type="Label" parent="ColorRect"]
+visible = false
+margin_left = 411.0
+margin_top = 579.0
+margin_right = 631.0
+margin_bottom = 634.0
+text = "Sounds"
+
+[node name="BackButton" parent="ColorRect" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -140.0
+margin_top = -264.0
+margin_right = 140.0
+margin_bottom = -182.0
+text = "Back"
+next_scene_path = "res://src/Screens/MainScreen.tscn"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ColorRect"]
+stream = ExtResource( 5 )
+bus = "Music"
+
+[connection signal="value_changed" from="ColorRect/MasterVolume" to="." method="_on_MasterVolume_value_changed"]
+[connection signal="value_changed" from="ColorRect/MusicVolume" to="." method="_on_MasterVolume_value_changed"]
+[connection signal="value_changed" from="ColorRect/SoundsVolume" to="." method="_on_MasterVolume_value_changed"]
