@@ -149,7 +149,7 @@ func respawn() -> void :
 	for y in range(3000,3030):
 		print(is_on_floor())
 		if is_on_floor() == false:
-			print("hello")
+			print("not on floor")
 			break
 		self.position = Vector2(new_position.x,-y)
 	input_enabled = true
