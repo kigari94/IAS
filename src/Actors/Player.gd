@@ -6,9 +6,9 @@ export(NodePath) var camera
 var main_camera =  null
 var player_weapon = null
 var input_enabled = true
-var screen_position = null
 
 onready var animation = $AnimationPlayer
+
 
 var jumpSound: AudioStreamPlayer
 var punchSound: AudioStreamPlayer
@@ -16,7 +16,6 @@ var deathSound: AudioStreamPlayer
 var respawnSound: AudioStreamPlayer
 
 func _ready() -> void:
-
 	# Sound init	
 	jumpSound = AudioStreamPlayer.new()
 	add_child(jumpSound)
@@ -37,6 +36,7 @@ func _ready() -> void:
 
 	#player_weapon.connect("attack_finished", self, "on_player_weapon_attack_finished")
 	main_camera = get_node(camera)
+
 
 func _on_DangerDetector_area_entered(_body: PhysicsBody2D) -> void:
 	die()
@@ -60,12 +60,14 @@ func _physics_process(_delta: float) -> void:
 	if direction.y < 0 and _current_state != _STATES.ATTACK:
 		animation.play("Jump_Animation")
 		jumpSound.play()
-			
+		
+				
 	# Run Animation
 	if ((direction.x < 0 or direction.x > 0) and _current_state != _STATES.ATTACK and self.is_on_floor()):
-		#print("run")
+		print("run")
 		_current_state = _STATES.MOVE
 		animation.play("Run_Animation")
+
 	
 	
 func _input(event: InputEvent) -> void:
@@ -79,7 +81,6 @@ func _input(event: InputEvent) -> void:
 	# Fight Animation + play fight sound
 		animation.play("Fight_Animation")
 		punchSound.play()
-
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	print(anim_name)
@@ -135,24 +136,19 @@ func _on_Timer_timeout():
 func respawn_position():
 #TODO: need to finde a way to calculate a good respawn position
 	var new_position = Vector2()
-	screen_position = main_camera.get_position()
-	new_position.x = screen_position.x - 6000 
-	new_position.y = screen_position.y 
-	
+	var old_position = self.position
+	new_position.x = old_position.x - 2000
+	new_position.y = old_position.y - 2000
 	return  new_position
 	
 func respawn() -> void :
 	#TODO Respawn animation
+	
 	# play respawn sound
-	var new_position = respawn_position()
 	respawnSound.play()
-	for y in range(3000,3030):
-		print(is_on_floor())
-		if is_on_floor() == false:
-			print("not on floor")
-			break
-		self.position = Vector2(new_position.x,-y)
+	
 	input_enabled = true
+	self.position = respawn_position()
 	
 func facing_direction(direction: float) -> void:
 	if direction > 0.0:
