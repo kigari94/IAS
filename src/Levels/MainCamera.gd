@@ -22,6 +22,3 @@ func set_target(new_target):
 	else:
 		currentTarget = get_node(target2)
 
-func get_position():
-	return self.global_position
-
