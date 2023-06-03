@@ -34,9 +34,9 @@ func _ready() -> void:
 	add_child(respawnSound)
 	respawnSound.stream = preload("res://assets/Sounds/JUMP/dramatic-sound-effect-01-144470_RESPAWN.mp3")
 
+
 	#player_weapon.connect("attack_finished", self, "on_player_weapon_attack_finished")
 	main_camera = get_node(camera)
-	
 
 
 func _on_DangerDetector_area_entered(_body: PhysicsBody2D) -> void:
@@ -115,7 +115,7 @@ func die() -> void:
 	input_enabled = false
 	$Timer.start()
 	main_camera.set_target(1)
-	PlayerData.playerOneActive = true
+	PlayerData.playerOneActive = false
 	#TODO Death animation
 	animation.play("Death_Animation")
 	deathSound.play()
@@ -134,6 +134,7 @@ func respawn_position():
 func respawn() -> void :
 	#TODO Respawn animation
 	respawnSound.play()
+	
 	input_enabled = true
 	self.position = respawn_position()
 	
