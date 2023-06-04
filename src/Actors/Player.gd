@@ -6,6 +6,7 @@ export(NodePath) var camera
 var main_camera =  null
 var player_weapon = null
 var input_enabled = true
+var screen_position = null
 
 onready var animation = $AnimationPlayer
 
@@ -64,7 +65,7 @@ func _physics_process(_delta: float) -> void:
 				
 	# Run Animation
 	if ((direction.x < 0 or direction.x > 0) and _current_state != _STATES.ATTACK and self.is_on_floor()):
-		print("run")
+		#print("run")
 		_current_state = _STATES.MOVE
 		animation.play("Run_Animation")
 
@@ -136,19 +137,24 @@ func _on_Timer_timeout():
 func respawn_position():
 #TODO: need to finde a way to calculate a good respawn position
 	var new_position = Vector2()
-	var old_position = self.position
-	new_position.x = old_position.x - 2000
-	new_position.y = old_position.y - 2000
+	screen_position = main_camera.get_position()
+	new_position.x = screen_position.x - 6000 
+	new_position.y = screen_position.y 
+	
 	return  new_position
 	
 func respawn() -> void :
 	#TODO Respawn animation
-	
 	# play respawn sound
+	var new_position = respawn_position()
 	respawnSound.play()
-	
+	for y in range(3000,3030):
+		print(is_on_floor())
+		if is_on_floor() == false:
+			print("hello")
+			break
+		self.position = Vector2(new_position.x,-y)
 	input_enabled = true
-	self.position = respawn_position()
 	
 func facing_direction(direction: float) -> void:
 	if direction > 0.0:
