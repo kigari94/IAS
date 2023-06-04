@@ -155,8 +155,7 @@ anims/RESET = SubResource( 5 )
 anims/Run_Animation = SubResource( 8 )
 
 [node name="Player2Animation" type="Sprite" parent="."]
-position = Vector2( -1, -85 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 60, -91 )
 texture = ExtResource( 3 )
 hframes = 5
 vframes = 5
