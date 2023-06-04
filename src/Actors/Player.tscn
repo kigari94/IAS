@@ -3,7 +3,7 @@
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
 [ext_resource path="res://assets/Animations/Player/fight/fight/fight_spritesheet_small.png" type="Texture" id=3]
-[ext_resource path="res://assets/Animations/Player/SpriteSheet_Player_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/Animations/Player/Player_1_Animation_SpriteSheet_NEU.png" type="Texture" id=4]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -47.7193, -80.1353, -45.552, -86.1556, -40.2541, -93.1392, -32.7889, -96.9922, 32.4715, -96.5106, 38.7327, -94.5841, 44.9938, -89.0453, 47.6427, -82.0618, 48.1244, -17.5238, 45.957, -10.2994, 41.6224, -5.00154, 33.9164, 0.296349, -31.1032, -0.18528, -39.5316, -4.2791, -45.0704, -10.0586, -47.4785, -16.5606 )
@@ -58,11 +58,12 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 15, 16, 17, 18, 19 ]
+"values": [ 5, 6, 7, 8, 9 ]
 }
 
 [sub_resource type="Animation" id=10]
 resource_name = "Idle_Animation"
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("PlayerAnimation:frame")
 tracks/0/interp = 1
@@ -73,7 +74,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0, 0 ]
+"values": [ 0, 1 ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -85,10 +86,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 10, 11 ]
+"values": [ 15, 16, 17 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -117,6 +118,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerAnimation:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Run_Animation"
@@ -131,7 +144,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 5, 6 ]
+"values": [ 10, 11 ]
 }
 
 [node name="Player" type="KinematicBody2D"]
