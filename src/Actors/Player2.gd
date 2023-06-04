@@ -6,25 +6,26 @@ export(NodePath) var camera
 var main_camera =  null
 var player_weapon = null
 var input_enabled = true
+var screen_position = null
 
 onready var animation = $AnimationPlayer
 
 
-var punchSound: AudioStreamPlayer
 var jumpSound: AudioStreamPlayer
+var punchSound: AudioStreamPlayer
 var deathSound: AudioStreamPlayer
 var respawnSound: AudioStreamPlayer
 
-
-
 func _ready() -> void:
+	# Sound init	
+	jumpSound = AudioStreamPlayer.new()
+	add_child(jumpSound)
+	#jumpSound.stream = preload("res://assets/Sounds/pop.wav")
+	jumpSound.stream = preload("res://assets/Sounds/JUMP/cartoon-jump-6462.mp3")
+	
 	punchSound = AudioStreamPlayer.new()
 	add_child(punchSound)
 	punchSound.stream = preload("res://assets/Sounds/FIGHT/punch-2-37333.mp3")
-	
-	jumpSound = AudioStreamPlayer.new()
-	add_child(jumpSound)
-	jumpSound.stream = preload("res://assets/Sounds/JUMP/cartoon-jump-6462.mp3")
 	
 	deathSound = AudioStreamPlayer.new()
 	add_child(deathSound)
@@ -33,7 +34,6 @@ func _ready() -> void:
 	respawnSound = AudioStreamPlayer.new()
 	add_child(respawnSound)
 	respawnSound.stream = preload("res://assets/Sounds/JUMP/dramatic-sound-effect-01-144470_RESPAWN.mp3")
-
 
 	#player_weapon.connect("attack_finished", self, "on_player_weapon_attack_finished")
 	main_camera = get_node(camera)
@@ -51,24 +51,26 @@ func _physics_process(_delta: float) -> void:
 	var snap: Vector2 = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
 	_velocity = move_and_slide_with_snap(_velocity, snap, FLOOR_NORMAL, true)
 	
-	if direction == Vector2(0,0) and _current_state != _STATES.ATTACK:
+	if direction == Vector2(0,0) and _current_state != _STATES.ATTACK and _current_state != _STATES.DEATH:
 		_current_state = _STATES.IDLE
 	
 	if _current_state == _STATES.IDLE  and self.is_on_floor():
 		animation.play("Idle_Animation")
-	
-	# Run Animation
-	if ((direction.x < 0 or direction.x > 0) and _current_state != _STATES.ATTACK and self.is_on_floor()):
-		print("run")
-		_current_state = _STATES.MOVE
-		animation.play("Run_Animation")
-	
-	# play jump sound
+
+	# Jump Animation + play jump sound
 	if direction.y < 0 and _current_state != _STATES.ATTACK:
 		animation.play("Jump_Animation")
 		jumpSound.play()
-	
+		
+				
+	# Run Animation
+	if ((direction.x < 0 or direction.x > 0) and _current_state != _STATES.ATTACK and self.is_on_floor()):
+		#print("run")
+		_current_state = _STATES.MOVE
+		animation.play("Run_Animation")
 
+	
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack_p2") and input_enabled == true and _current_state != _STATES.ATTACK:
 		_current_state = _STATES.ATTACK
@@ -77,14 +79,23 @@ func _input(event: InputEvent) -> void:
 		weapon_anchor.add_child(weapon_instance)
 		player_weapon = weapon_anchor.get_child(0)
 		player_weapon.attack()
-		# Fight Animation + Sound
+	# Fight Animation + play fight sound
 		animation.play("Fight_Animation")
 		punchSound.play()
-		
-#func _on_attack_finished(_Attack_Animation):
-#	player_weapon.queue_free()
-#	_current_state = _STATES.IDLE
 
+func _on_AnimationPlayer_animation_finished(anim_name):
+	print(anim_name)
+	if anim_name == "Fight_Animation":
+		print("fight end")
+		player_weapon.queue_free()
+		_current_state = _STATES.IDLE
+	if anim_name == "Run_Animation":
+		print("run_end")
+		_current_state = _STATES.IDLE
+	if anim_name == "Idle_Animation":
+		print("Idle end")
+
+		
 # Calculating a Vector2, from the user inputs, as direction value for the player 
 func get_direction() -> Vector2:
 	return Vector2(
@@ -113,6 +124,7 @@ func calculate_move_velocity(
 	
 func die() -> void:
 	input_enabled = false
+	_current_state = _STATES.DEATH
 	$Timer.start()
 	main_camera.set_target(1)
 	PlayerData.playerOneActive = true
@@ -126,17 +138,25 @@ func _on_Timer_timeout():
 func respawn_position():
 #TODO: need to finde a way to calculate a good respawn position
 	var new_position = Vector2()
-	var old_position = self.position
-	new_position.x = old_position.x + 2000
-	new_position.y = old_position.y - 2000
+	screen_position = main_camera.get_position()
+	new_position.x = screen_position.x + 6000 
+	new_position.y = screen_position.y 
+	
 	return  new_position
 	
 func respawn() -> void :
 	#TODO Respawn animation
+	# play respawn sound
+	var new_position = respawn_position()
 	respawnSound.play()
-	
+	for y in range(3000,3030):
+		print(is_on_floor())
+		if is_on_floor() == false:
+			print("hello")
+			break
+		self.position = Vector2(new_position.x,-y)
 	input_enabled = true
-	self.position = respawn_position()
+	_current_state = _STATES.IDLE
 	
 func facing_direction(direction: float) -> void:
 	if direction > 0.0:
@@ -145,3 +165,5 @@ func facing_direction(direction: float) -> void:
 	elif direction < 0.0:
 		#$WeaponSpawnLocation.scale.x = -1.0
 		self.scale.x = self.scale.y * -1 
+
+
