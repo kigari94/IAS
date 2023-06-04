@@ -139,7 +139,7 @@ func respawn_position():
 #TODO: need to finde a way to calculate a good respawn position
 	var new_position = Vector2()
 	screen_position = main_camera.get_position()
-	new_position.x = screen_position.x - 6000 
+	new_position.x = screen_position.x + 6000 
 	new_position.y = screen_position.y 
 	
 	return  new_position
