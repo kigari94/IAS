@@ -9,7 +9,7 @@ export var gravity: = 3500.0
 
 var _velocity: = Vector2.ZERO
 
-enum _STATES {IDLE, MOVE, ATTACK}
+enum _STATES {IDLE, MOVE, ATTACK, DEATH}
 
 var _current_state = _STATES.IDLE
 

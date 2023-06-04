@@ -51,7 +51,7 @@ func _physics_process(_delta: float) -> void:
 	var snap: Vector2 = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
 	_velocity = move_and_slide_with_snap(_velocity, snap, FLOOR_NORMAL, true)
 	
-	if direction == Vector2(0,0) and _current_state != _STATES.ATTACK:
+	if direction == Vector2(0,0) and _current_state != _STATES.ATTACK and _current_state != _STATES.DEATH:
 		_current_state = _STATES.IDLE
 	
 	if _current_state == _STATES.IDLE  and self.is_on_floor():
@@ -124,6 +124,7 @@ func calculate_move_velocity(
 	
 func die() -> void:
 	input_enabled = false
+	_current_state = _STATES.DEATH
 	$Timer.start()
 	main_camera.set_target(2)
 	PlayerData.playerOneActive = false
@@ -155,6 +156,7 @@ func respawn() -> void :
 			break
 		self.position = Vector2(new_position.x,-y)
 	input_enabled = true
+	_current_state = _STATES.IDLE
 	
 func facing_direction(direction: float) -> void:
 	if direction > 0.0:
