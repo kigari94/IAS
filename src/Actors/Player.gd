@@ -54,7 +54,7 @@ func _physics_process(_delta: float) -> void:
 	if direction == Vector2(0,0) and _current_state != _STATES.ATTACK and _current_state != _STATES.DEATH:
 		_current_state = _STATES.IDLE
 	
-	if _current_state == _STATES.IDLE  and self.is_on_floor():
+	if _current_state == _STATES.IDLE and self.is_on_floor():
 		animation.play("Idle_Animation")
 
 	# Jump Animation + play jump sound
@@ -64,7 +64,7 @@ func _physics_process(_delta: float) -> void:
 		
 				
 	# Run Animation
-	if ((direction.x < 0 or direction.x > 0) and _current_state != _STATES.ATTACK and self.is_on_floor()):
+	if ((direction.x < 0 or direction.x > 0) and _current_state != _STATES.ATTACK and _current_state != _STATES.DEATH and self.is_on_floor()):
 		#print("run")
 		_current_state = _STATES.MOVE
 		animation.play("Run_Animation")
@@ -159,10 +159,10 @@ func respawn() -> void :
 	_current_state = _STATES.IDLE
 	
 func facing_direction(direction: float) -> void:
-	if direction > 0.0:
+	if direction > 0.0 and input_enabled:
 		#$WeaponSpawnLocation.scale.x = 1.0
 		self.scale.x = self.scale.y * 1 
-	elif direction < 0.0:
+	elif direction < 0.0 and input_enabled:
 		#$WeaponSpawnLocation.scale.x = -1.0
 		self.scale.x = self.scale.y * -1 
 
