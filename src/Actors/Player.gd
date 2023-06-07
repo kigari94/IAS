@@ -44,6 +44,7 @@ func _on_DangerDetector_area_entered(_body: PhysicsBody2D) -> void:
 
 # Godot function that handels physics calculations, it is called every frame
 func _physics_process(_delta: float) -> void:
+	death_out_of_screen()
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction: = get_direction()
 	facing_direction(direction.x)
@@ -154,7 +155,7 @@ func respawn() -> void :
 		if is_on_floor() == false:
 			print("hello")
 			break
-		self.position = Vector2(new_position.x,-y)
+		self.position = Vector2(new_position.x,-3000)
 	input_enabled = true
 	_current_state = _STATES.IDLE
 	
@@ -166,4 +167,7 @@ func facing_direction(direction: float) -> void:
 		#$WeaponSpawnLocation.scale.x = -1.0
 		self.scale.x = self.scale.y * -1 
 
-
+func death_out_of_screen() -> void:
+	screen_position = main_camera.get_position()
+	if screen_position.x + 7100 < self.get_position().x and _current_state != _STATES.DEATH:
+		die()
