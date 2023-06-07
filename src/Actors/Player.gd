@@ -153,9 +153,19 @@ func respawn() -> void :
 	var new_position = respawn_position()
 	respawnSound.play()
 	self.position = Vector2(new_position.x ,new_position.y)
-	print(ray.get_collider())
+	ray.force_raycast_update()
+	#print(ray.get_collider(), ray.get_collision_point())
+	print(ray.get_collision_point().y - self.position.y)
 	if ray.get_collider() == null:
 		new_position.x += 1000 
+		self.position = Vector2(new_position.x ,new_position.y)
+		print(abs(ray.get_collision_point().y - self.position.y))
+	ray.force_raycast_update()
+	print("collision point: ",ray.get_collision_point().y," - player position: ",self.position.y)
+	while abs(ray.get_collision_point().y - self.position.y)  < 512:
+		ray.force_raycast_update()
+		print(abs(ray.get_collision_point().y - self.position.y))
+		new_position.y += 128 
 		self.position = Vector2(new_position.x ,new_position.y)
 	input_enabled = true
 	_current_state = _STATES.IDLE

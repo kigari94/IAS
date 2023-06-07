@@ -173,8 +173,9 @@ vframes = 5
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
 position = Vector2( -1, -57 )
+scale = Vector2( 1.00317, 1 )
 enabled = true
-cast_to = Vector2( 0, 500 )
+cast_to = Vector2( 0, 3000 )
 collision_mask = 4
 collide_with_areas = true
 
