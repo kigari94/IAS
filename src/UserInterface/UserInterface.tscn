@@ -79,19 +79,19 @@ script = ExtResource( 6 )
 visible = false
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -394.0
-margin_top = 58.0
-margin_right = -43.0
-margin_bottom = 113.0
-text = "Player 1 run"
+margin_left = -355.0
+margin_top = 146.0
+margin_right = -59.0
+margin_bottom = 201.0
+text = "Green run!"
 
 [node name="LabelLeft" type="Label" parent="."]
 visible = false
-margin_left = 47.0
-margin_top = 63.0
-margin_right = 398.0
-margin_bottom = 118.0
-text = "Player 2 run"
+margin_left = 52.0
+margin_top = 146.0
+margin_right = 380.0
+margin_bottom = 201.0
+text = "Orange run!"
 
 [node name="PauseOverlay" type="ColorRect" parent="."]
 visible = false
@@ -135,8 +135,7 @@ margin_bottom = 360.0
 
 [node name="ArrowAnimationPlayer1" type="Sprite" parent="."]
 visible = false
-position = Vector2( 1642, 80 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 1720, 80 )
 texture = ExtResource( 7 )
 hframes = 5
 
@@ -147,8 +146,7 @@ anims/RESET = SubResource( 2 )
 
 [node name="ArrowAnimationPlayer2" type="Sprite" parent="."]
 visible = false
-position = Vector2( 291, 80 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 204, 80 )
 texture = ExtResource( 8 )
 hframes = 5
 frame = 4
