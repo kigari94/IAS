@@ -155,7 +155,7 @@ one_shot = true
 position = Vector2( -61, -46 )
 
 [node name="WeaponAnchorPoint" type="Node2D" parent="WeaponSpawnLocation"]
-position = Vector2( 160, 2 )
+position = Vector2( 219, -40 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Death_Animation = SubResource( 9 )
