@@ -11,7 +11,7 @@ polygon = PoolVector2Array( -47.7193, -80.1353, -45.552, -86.1556, -40.2541, -93
 extents = Vector2( 61.5, 75 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 66, 75 )
+extents = Vector2( 76.5, 75 )
 
 [sub_resource type="Animation" id=9]
 resource_name = "Death_Animation"
@@ -144,7 +144,7 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DangerDetector"]
 modulate = Color( 0.337255, 0.223529, 1, 1 )
-position = Vector2( 60, -76 )
+position = Vector2( 59.5, -76 )
 shape = SubResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
