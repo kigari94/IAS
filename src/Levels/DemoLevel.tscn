@@ -73,6 +73,7 @@ scale = Vector2( 1500, 10 )
 offset = Vector2( 0, -2000 )
 current = true
 zoom = Vector2( 7, 7 )
+limit_top = -4000
 smoothing_enabled = true
 script = ExtResource( 9 )
 target1 = NodePath("../Player")
