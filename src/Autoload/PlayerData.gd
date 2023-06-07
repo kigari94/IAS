@@ -1,6 +1,7 @@
 extends Node
 
-signal player_name
+signal playerName
+signal playerOneActive
 
 var playerName: = "" setget set_name
 var playerOneActive: bool = true setget set_active
