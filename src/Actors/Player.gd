@@ -9,6 +9,7 @@ var input_enabled = true
 var screen_position = null
 
 onready var animation = $AnimationPlayer
+onready var ray = $RayCastDown
 
 
 var jumpSound: AudioStreamPlayer
@@ -69,7 +70,9 @@ func _physics_process(_delta: float) -> void:
 		#print("run")
 		_current_state = _STATES.MOVE
 		animation.play("Run_Animation")
-
+	
+	# Raycast for Ground detection
+	#print(ray.is_colliding()," Point: ", ray.get_collision_point(),"Normal: ", ray.get_collision_normal(), " Collider: ", ray.get_collider())
 	
 	
 func _input(event: InputEvent) -> void:
@@ -142,23 +145,20 @@ func respawn_position():
 	screen_position = main_camera.get_position()
 	new_position.x = screen_position.x - 6000 
 	new_position.y = screen_position.y - 3000
-	print(new_position)
 	return  new_position
 	
 func respawn() -> void :
 	#TODO Respawn animation
 	# play respawn sound
 	var new_position = respawn_position()
-	print(new_position)
 	respawnSound.play()
-	self.position = Vector2(new_position.x,new_position.y)
+	self.position = Vector2(new_position.x ,new_position.y)
+	print(ray.get_collider())
+	if ray.get_collider() == null:
+		new_position.x += 1000 
+		self.position = Vector2(new_position.x ,new_position.y)
 	input_enabled = true
 	_current_state = _STATES.IDLE
-#	for y in range(3000,3030):
-#		print(is_on_floor())
-#		if is_on_floor() == false:
-#			print("hello")
-#			break
 
 	
 func facing_direction(direction: float) -> void:

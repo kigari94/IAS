@@ -171,6 +171,13 @@ texture = ExtResource( 4 )
 hframes = 5
 vframes = 5
 
+[node name="RayCastDown" type="RayCast2D" parent="."]
+position = Vector2( 60, -58 )
+enabled = true
+cast_to = Vector2( 0, 500 )
+collision_mask = 4
+collide_with_areas = true
+
 [connection signal="area_entered" from="DangerDetector" to="." method="_on_DangerDetector_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
