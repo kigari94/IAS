@@ -80,17 +80,17 @@ visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -355.0
-margin_top = 113.0
+margin_top = 146.0
 margin_right = -59.0
-margin_bottom = 168.0
+margin_bottom = 201.0
 text = "Green run!"
 
 [node name="LabelLeft" type="Label" parent="."]
 visible = false
 margin_left = 52.0
-margin_top = 113.0
+margin_top = 146.0
 margin_right = 380.0
-margin_bottom = 168.0
+margin_bottom = 201.0
 text = "Orange run!"
 
 [node name="PauseOverlay" type="ColorRect" parent="."]
@@ -136,7 +136,6 @@ margin_bottom = 360.0
 [node name="ArrowAnimationPlayer1" type="Sprite" parent="."]
 visible = false
 position = Vector2( 1720, 80 )
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 7 )
 hframes = 5
 
@@ -148,7 +147,6 @@ anims/RESET = SubResource( 2 )
 [node name="ArrowAnimationPlayer2" type="Sprite" parent="."]
 visible = false
 position = Vector2( 204, 80 )
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 8 )
 hframes = 5
 frame = 4
