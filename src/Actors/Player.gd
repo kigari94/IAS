@@ -9,6 +9,7 @@ var input_enabled = true
 var screen_position = null
 
 onready var animation = $AnimationPlayer
+onready var ray = $RayCastDown
 
 
 var jumpSound: AudioStreamPlayer
@@ -44,6 +45,7 @@ func _on_DangerDetector_area_entered(_body: PhysicsBody2D) -> void:
 
 # Godot function that handels physics calculations, it is called every frame
 func _physics_process(_delta: float) -> void:
+	death_out_of_screen()
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction: = get_direction()
 	facing_direction(direction.x)
@@ -54,7 +56,7 @@ func _physics_process(_delta: float) -> void:
 	if direction == Vector2(0,0) and _current_state != _STATES.ATTACK and _current_state != _STATES.DEATH:
 		_current_state = _STATES.IDLE
 	
-	if _current_state == _STATES.IDLE  and self.is_on_floor():
+	if _current_state == _STATES.IDLE and self.is_on_floor():
 		animation.play("Idle_Animation")
 
 	# Jump Animation + play jump sound
@@ -64,11 +66,13 @@ func _physics_process(_delta: float) -> void:
 		
 				
 	# Run Animation
-	if ((direction.x < 0 or direction.x > 0) and _current_state != _STATES.ATTACK and self.is_on_floor()):
+	if ((direction.x < 0 or direction.x > 0) and _current_state != _STATES.ATTACK and _current_state != _STATES.DEATH and self.is_on_floor()):
 		#print("run")
 		_current_state = _STATES.MOVE
 		animation.play("Run_Animation")
-
+	
+	# Raycast for Ground detection
+	#print(ray.is_colliding()," Point: ", ray.get_collision_point(),"Normal: ", ray.get_collision_normal(), " Collider: ", ray.get_collider())
 	
 	
 func _input(event: InputEvent) -> void:
@@ -140,8 +144,7 @@ func respawn_position():
 	var new_position = Vector2()
 	screen_position = main_camera.get_position()
 	new_position.x = screen_position.x - 6000 
-	new_position.y = screen_position.y 
-	
+	new_position.y = screen_position.y - 3000
 	return  new_position
 	
 func respawn() -> void :
@@ -149,21 +152,34 @@ func respawn() -> void :
 	# play respawn sound
 	var new_position = respawn_position()
 	respawnSound.play()
-	for y in range(3000,3030):
-		print(is_on_floor())
-		if is_on_floor() == false:
-			print("hello")
-			break
-		self.position = Vector2(new_position.x,-y)
+	self.position = Vector2(new_position.x ,new_position.y)
+	ray.force_raycast_update()
+	#print(ray.get_collider(), ray.get_collision_point())
+	print(ray.get_collision_point().y - self.position.y)
+	if ray.get_collider() == null:
+		new_position.x += 1000 
+		self.position = Vector2(new_position.x ,new_position.y)
+		print(abs(ray.get_collision_point().y - self.position.y))
+	ray.force_raycast_update()
+	print("collision point: ",ray.get_collision_point().y," - player position: ",self.position.y)
+	while abs(ray.get_collision_point().y - self.position.y)  < 512:
+		ray.force_raycast_update()
+		print(abs(ray.get_collision_point().y - self.position.y))
+		new_position.y += 128 
+		self.position = Vector2(new_position.x ,new_position.y)
 	input_enabled = true
 	_current_state = _STATES.IDLE
+
 	
 func facing_direction(direction: float) -> void:
-	if direction > 0.0:
+	if direction > 0.0 and input_enabled:
 		#$WeaponSpawnLocation.scale.x = 1.0
 		self.scale.x = self.scale.y * 1 
-	elif direction < 0.0:
+	elif direction < 0.0 and input_enabled:
 		#$WeaponSpawnLocation.scale.x = -1.0
 		self.scale.x = self.scale.y * -1 
 
-
+func death_out_of_screen() -> void:
+	screen_position = main_camera.get_position()
+	if screen_position.x + 7100 < self.get_position().x and _current_state != _STATES.DEATH:
+		die()
