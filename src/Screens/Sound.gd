@@ -6,6 +6,7 @@ var backgroundSound: AudioStreamPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	backgroundSound = AudioStreamPlayer.new()
+	backgroundSound.bus = "Music"
 	add_child(backgroundSound)
 	backgroundSound.stream = preload("res://assets/Sounds/background_music/space-chillout-14194.mp3")
 	backgroundSound.play()

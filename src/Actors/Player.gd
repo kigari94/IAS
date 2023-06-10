@@ -20,19 +20,23 @@ var respawnSound: AudioStreamPlayer
 func _ready() -> void:
 	# Sound init	
 	jumpSound = AudioStreamPlayer.new()
+	jumpSound.bus = "Sounds"
 	add_child(jumpSound)
 	#jumpSound.stream = preload("res://assets/Sounds/pop.wav")
 	jumpSound.stream = preload("res://assets/Sounds/JUMP/cartoon-jump-6462.mp3")
 	
 	punchSound = AudioStreamPlayer.new()
+	punchSound.bus = "Sounds"
 	add_child(punchSound)
 	punchSound.stream = preload("res://assets/Sounds/FIGHT/punch-2-37333.mp3")
 	
 	deathSound = AudioStreamPlayer.new()
+	deathSound.bus = "Sounds"
 	add_child(deathSound)
 	deathSound.stream = preload("res://assets/Sounds/TRAPS/negative_beeps-6008.mp3")
 	
 	respawnSound = AudioStreamPlayer.new()
+	respawnSound.bus = "Sounds"
 	add_child(respawnSound)
 	respawnSound.stream = preload("res://assets/Sounds/JUMP/dramatic-sound-effect-01-144470_RESPAWN.mp3")
 
