@@ -33,8 +33,14 @@ min_value = -50.0
 max_value = 0.0
 value = -25.0
 
+[node name="MasterDisplay" type="Label" parent="ColorRect/MasterVolume"]
+margin_left = 1028.0
+margin_top = -74.0
+margin_right = 1116.0
+margin_bottom = -19.0
+text = "50"
+
 [node name="MusicVolume" type="HSlider" parent="ColorRect"]
-visible = false
 margin_left = 399.0
 margin_top = 493.0
 margin_right = 1522.0
@@ -43,8 +49,14 @@ min_value = -50.0
 max_value = 0.0
 value = -25.0
 
+[node name="MusicDisplay" type="Label" parent="ColorRect/MusicVolume"]
+margin_left = 1028.0
+margin_top = -65.0
+margin_right = 1116.0
+margin_bottom = -10.0
+text = "50"
+
 [node name="SoundsVolume" type="HSlider" parent="ColorRect"]
-visible = false
 margin_left = 399.0
 margin_top = 653.0
 margin_right = 1522.0
@@ -52,6 +64,13 @@ margin_bottom = 669.0
 min_value = -50.0
 max_value = 0.0
 value = -25.0
+
+[node name="SoundsDisplay" type="Label" parent="ColorRect/SoundsVolume"]
+margin_left = 1028.0
+margin_top = -60.0
+margin_right = 1116.0
+margin_bottom = -5.0
+text = "50"
 
 [node name="LabelMaster" type="Label" parent="ColorRect"]
 margin_left = 411.0
@@ -61,7 +80,6 @@ margin_bottom = 323.0
 text = "Master "
 
 [node name="LabelMusic" type="Label" parent="ColorRect"]
-visible = false
 margin_left = 411.0
 margin_top = 415.0
 margin_right = 631.0
@@ -69,7 +87,6 @@ margin_bottom = 470.0
 text = "Music"
 
 [node name="LabelSounds" type="Label" parent="ColorRect"]
-visible = false
 margin_left = 411.0
 margin_top = 579.0
 margin_right = 631.0
@@ -93,5 +110,5 @@ stream = ExtResource( 5 )
 bus = "Music"
 
 [connection signal="value_changed" from="ColorRect/MasterVolume" to="." method="_on_MasterVolume_value_changed"]
-[connection signal="value_changed" from="ColorRect/MusicVolume" to="." method="_on_MasterVolume_value_changed"]
-[connection signal="value_changed" from="ColorRect/SoundsVolume" to="." method="_on_MasterVolume_value_changed"]
+[connection signal="value_changed" from="ColorRect/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
+[connection signal="value_changed" from="ColorRect/SoundsVolume" to="." method="_on_SoundsVolume_value_changed"]
