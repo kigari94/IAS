@@ -6,15 +6,13 @@ onready var counter: Label = get_node("Overlay/Counter")
 onready var overlay: ColorRect = get_node("Overlay")
 
 var time: int
-var gameStarted: bool = false
 
 func _process(_delta)-> void:
-	if !gameStarted:
+	if PlayerData.countDownActive:
 		showOverlay()
 
 func pause(value)-> void:
 	scene_tree.paused = value
-	print(value)
 
 func showOverlay()-> void:
 	pause(true)
@@ -23,4 +21,5 @@ func showOverlay()-> void:
 	if time == 0:
 		pause(false)
 		overlay.visible = false
-		gameStarted = true
+		PlayerData.countDownActive = false
+		timer.stop()

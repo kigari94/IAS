@@ -20,6 +20,13 @@ layer = 100
 
 [node name="UserInterface" parent="UserInterface" instance=ExtResource( 6 )]
 
+[node name="CountDownLayer" type="CanvasLayer" parent="."]
+layer = 90
+
+[node name="CountDown" parent="CountDownLayer" instance=ExtResource( 11 )]
+margin_top = -10.0
+margin_bottom = -10.0
+
 [node name="BackgroundImage" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -82,10 +89,3 @@ target2 = NodePath("../Player2")
 
 [node name="Sound" type="Node" parent="."]
 script = ExtResource( 10 )
-
-[node name="CountDownLayer" type="CanvasLayer" parent="."]
-layer = 100
-
-[node name="CountDown" parent="CountDownLayer" instance=ExtResource( 11 )]
-margin_top = -10.0
-margin_bottom = -10.0
