@@ -88,12 +88,12 @@ func _input(event: InputEvent) -> void:
 		player_weapon = weapon_anchor.get_child(0)
 		player_weapon.attack()
 	# Fight Animation + play fight sound
-		animation.play("Fight_Animation")
+		animation.play("Fight_Animation_2")
 		punchSound.play()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	print(anim_name)
-	if anim_name == "Fight_Animation":
+	if anim_name == "Fight_Animation_2":
 		print("fight end")
 		player_weapon.queue_free()
 		_current_state = _STATES.IDLE
