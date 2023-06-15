@@ -48,6 +48,7 @@ scale = Vector2( -3, 3 )
 speed = Vector2( 3000, 7000 )
 gravity = 15000.0
 camera = NodePath("../MainCamera")
+boost_speed = 4000
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -1735, 61 )
