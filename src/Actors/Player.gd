@@ -3,6 +3,8 @@ extends Actor
 export var weapon_scene_path: = "res://src/Objects/Weapon.tscn"
 export(NodePath) var camera
 
+export var boost_speed = 3000
+
 var main_camera =  null
 var player_weapon = null
 var input_enabled = true
@@ -74,6 +76,12 @@ func _physics_process(_delta: float) -> void:
 		#print("run")
 		_current_state = _STATES.MOVE
 		animation.play("Run_Animation")
+		
+	# Higher run speed as hunter
+	if PlayerData.playerOneActive == false:
+		speed.x = boost_speed
+	else:
+		speed.x = 3000
 	
 	# Raycast for Ground detection
 	#print(ray.is_colliding()," Point: ", ray.get_collision_point(),"Normal: ", ray.get_collision_normal(), " Collider: ", ray.get_collider())
@@ -92,16 +100,17 @@ func _input(event: InputEvent) -> void:
 		punchSound.play()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	print(anim_name)
+	#print(anim_name)
 	if anim_name == "Fight_Animation_2":
-		print("fight end")
+		#print("fight end")
 		player_weapon.queue_free()
 		_current_state = _STATES.IDLE
 	if anim_name == "Run_Animation":
-		print("run_end")
+		#print("run_end")
 		_current_state = _STATES.IDLE
 	if anim_name == "Idle_Animation":
-		print("Idle end")
+		pass
+		#print("Idle end")
 
 		
 # Calculating a Vector2, from the user inputs, as direction value for the player 
@@ -134,8 +143,13 @@ func die() -> void:
 	input_enabled = false
 	_current_state = _STATES.DEATH
 	$Timer.start()
-	main_camera.set_target(2)
-	PlayerData.playerOneActive = false
+
+	if name == "Player":
+		main_camera.set_target(2)
+		PlayerData.playerOneActive = false
+	elif name == "Player2":
+		main_camera.set_target(1)
+		PlayerData.playerOneActive = true
 	#TODO Death animation
 	animation.play("Death_Animation")
 	deathSound.play()
@@ -147,7 +161,11 @@ func respawn_position():
 #TODO: need to finde a way to calculate a good respawn position
 	var new_position = Vector2()
 	screen_position = main_camera.get_position()
-	new_position.x = screen_position.x - 6000 
+
+	if name == "Player":
+		new_position.x = screen_position.x - 6000 
+	elif name == "Player2":
+		new_position.x = screen_position.x + 6000 
 	new_position.y = screen_position.y - 3000
 	return  new_position
 	
@@ -163,12 +181,14 @@ func respawn() -> void :
 	if ray.get_collider() == null:
 		new_position.x += 1000 
 		self.position = Vector2(new_position.x ,new_position.y)
-		print(abs(ray.get_collision_point().y - self.position.y))
+
+		#print(abs(ray.get_collision_point().y - self.position.y))
 	ray.force_raycast_update()
 	print("collision point: ",ray.get_collision_point().y," - player position: ",self.position.y)
 	while abs(ray.get_collision_point().y - self.position.y)  < 512:
 		ray.force_raycast_update()
-		print(abs(ray.get_collision_point().y - self.position.y))
+
+		#print(abs(ray.get_collision_point().y - self.position.y))
 		new_position.y += 128 
 		self.position = Vector2(new_position.x ,new_position.y)
 	input_enabled = true
