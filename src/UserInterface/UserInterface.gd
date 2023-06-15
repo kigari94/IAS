@@ -13,7 +13,7 @@ var paused: = false setget set_paused
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") && !PlayerData.countDownActive:
 		self.paused = !paused
 		scene_tree.set_input_as_handled()
 
