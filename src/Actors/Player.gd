@@ -96,12 +96,12 @@ func _input(event: InputEvent) -> void:
 		player_weapon = weapon_anchor.get_child(0)
 		player_weapon.attack()
 	# Fight Animation + play fight sound
-		animation.play("Fight_Animation")
+		animation.play("Fight_Animation_2")
 		punchSound.play()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	#print(anim_name)
-	if anim_name == "Fight_Animation":
+	if anim_name == "Fight_Animation_2":
 		#print("fight end")
 		player_weapon.queue_free()
 		_current_state = _STATES.IDLE
@@ -143,6 +143,7 @@ func die() -> void:
 	input_enabled = false
 	_current_state = _STATES.DEATH
 	$Timer.start()
+
 	if name == "Player":
 		main_camera.set_target(2)
 		PlayerData.playerOneActive = false
@@ -160,6 +161,7 @@ func respawn_position():
 #TODO: need to finde a way to calculate a good respawn position
 	var new_position = Vector2()
 	screen_position = main_camera.get_position()
+
 	if name == "Player":
 		new_position.x = screen_position.x - 6000 
 	elif name == "Player2":
@@ -179,11 +181,13 @@ func respawn() -> void :
 	if ray.get_collider() == null:
 		new_position.x += 1000 
 		self.position = Vector2(new_position.x ,new_position.y)
+
 		#print(abs(ray.get_collision_point().y - self.position.y))
 	ray.force_raycast_update()
 	print("collision point: ",ray.get_collision_point().y," - player position: ",self.position.y)
 	while abs(ray.get_collision_point().y - self.position.y)  < 512:
 		ray.force_raycast_update()
+
 		#print(abs(ray.get_collision_point().y - self.position.y))
 		new_position.y += 128 
 		self.position = Vector2(new_position.x ,new_position.y)
