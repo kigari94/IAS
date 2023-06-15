@@ -3,6 +3,8 @@ extends Actor
 export var weapon_scene_path: = "res://src/Objects/Weapon.tscn"
 export(NodePath) var camera
 
+export var boost_speed = 3000
+
 var main_camera =  null
 var player_weapon = null
 var input_enabled = true
@@ -74,6 +76,12 @@ func _physics_process(_delta: float) -> void:
 		#print("run")
 		_current_state = _STATES.MOVE
 		animation.play("Run_Animation")
+		
+	# Higher run speed as hunter
+	if PlayerData.playerOneActive == false:
+		speed.x = boost_speed
+	else:
+		speed.x = 3000
 	
 	# Raycast for Ground detection
 	#print(ray.is_colliding()," Point: ", ray.get_collision_point(),"Normal: ", ray.get_collision_normal(), " Collider: ", ray.get_collider())

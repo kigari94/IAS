@@ -55,6 +55,7 @@ scale = Vector2( 3, 3 )
 speed = Vector2( 3000, 7000 )
 gravity = 15000.0
 camera = NodePath("../MainCamera")
+boost_speed = 4000
 
 [node name="PortalLeft" parent="." instance=ExtResource( 8 )]
 position = Vector2( -66271, -1046 )
