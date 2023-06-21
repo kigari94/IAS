@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/Levels/demo_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/Levels/MainCamera.gd" type="Script" id=9]
 [ext_resource path="res://src/Levels/Sound.gd" type="Script" id=10]
 [ext_resource path="res://src/UserInterface/CountDown.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Objects/Stacheln.tscn" type="PackedScene" id=12]
 
 [node name="DemoLevel" type="Node2D"]
 position = Vector2( 0, -10 )
@@ -91,3 +92,21 @@ target2 = NodePath("../Player2")
 
 [node name="Sound" type="Node" parent="."]
 script = ExtResource( 10 )
+
+[node name="StachelGruppe" type="Node2D" parent="."]
+
+[node name="Node2D" parent="StachelGruppe" instance=ExtResource( 12 )]
+position = Vector2( -3238, -2106 )
+rotation = -3.14159
+
+[node name="Node2D2" parent="StachelGruppe" instance=ExtResource( 12 )]
+position = Vector2( -2825, -2064 )
+rotation = -3.14159
+
+[node name="Node2D3" parent="StachelGruppe" instance=ExtResource( 12 )]
+position = Vector2( -2388, -2082 )
+rotation = -3.14159
+
+[node name="Node2D4" parent="StachelGruppe" instance=ExtResource( 12 )]
+position = Vector2( -1969, -2052 )
+rotation = -3.14159
