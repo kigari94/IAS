@@ -9,6 +9,7 @@ var main_camera =  null
 var player_weapon = null
 var input_enabled = true
 var screen_position = null
+var boost_enabled = false
 
 onready var animation = $AnimationPlayer
 onready var ray = $RayCastDown
@@ -78,14 +79,11 @@ func _physics_process(_delta: float) -> void:
 		animation.play("Run_Animation")
 		
 	# Higher run speed as hunter
-	if PlayerData.playerOneActive == true:
-		speed.x = boost_speed
-	else:
-		speed.x = 3000
-	
-	# Raycast for Ground detection
-	#print(ray.is_colliding()," Point: ", ray.get_collision_point(),"Normal: ", ray.get_collision_normal(), " Collider: ", ray.get_collider())
-	
+	if boost_enabled == false:
+		if PlayerData.playerOneActive == true:
+			speed.x = boost_speed
+		else:
+			speed.x = 3000
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack_p2") and input_enabled == true and _current_state != _STATES.ATTACK:
@@ -189,7 +187,6 @@ func respawn() -> void :
 		self.position = Vector2(new_position.x ,new_position.y)
 	input_enabled = true
 	_current_state = _STATES.IDLE
-
 	
 func facing_direction(direction: float) -> void:
 	if direction > 0.0 and input_enabled:
@@ -207,3 +204,14 @@ func death_out_of_screen() -> void:
 	elif name == "Player2":		
 		if screen_position.x - 7100 > self.get_position().x and _current_state != _STATES.DEATH:
 			die()
+
+func power_up_speed() -> void:
+	boost_enabled = true
+	speed.x = speed.x + 1000
+	print(speed.x)
+	$PowerUpTimer.start()
+
+func _on_PowerUpTimer_timeout():
+	speed.x = speed.x - 1000
+	boost_enabled = false
+	print(speed.x)

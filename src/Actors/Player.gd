@@ -3,12 +3,13 @@ extends Actor
 export var weapon_scene_path: = "res://src/Objects/Weapon.tscn"
 export(NodePath) var camera
 
-export var boost_speed = 3000
+export var boost_speed = 4000
 
 var main_camera =  null
 var player_weapon = null
 var input_enabled = true
 var screen_position = null
+var boost_enabled = false
 
 onready var animation = $AnimationPlayer
 onready var ray = $RayCastDown
@@ -78,14 +79,11 @@ func _physics_process(_delta: float) -> void:
 		animation.play("Run_Animation")
 		
 	# Higher run speed as hunter
-	if PlayerData.playerOneActive == false:
-		speed.x = boost_speed
-	else:
-		speed.x = 3000
-	
-	# Raycast for Ground detection
-	#print(ray.is_colliding()," Point: ", ray.get_collision_point(),"Normal: ", ray.get_collision_normal(), " Collider: ", ray.get_collider())
-	
+	if boost_enabled == false:
+		if PlayerData.playerOneActive == false:
+			speed.x = boost_speed
+		else:
+			speed.x = 3000
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack") and input_enabled == true and _current_state != _STATES.ATTACK:
@@ -161,7 +159,6 @@ func respawn_position():
 #TODO: need to finde a way to calculate a good respawn position
 	var new_position = Vector2()
 	screen_position = main_camera.get_position()
-
 	if name == "Player":
 		new_position.x = screen_position.x - 6000 
 	elif name == "Player2":
@@ -181,19 +178,16 @@ func respawn() -> void :
 	if ray.get_collider() == null:
 		new_position.x += 1000 
 		self.position = Vector2(new_position.x ,new_position.y)
-
 		#print(abs(ray.get_collision_point().y - self.position.y))
 	ray.force_raycast_update()
 	#print("collision point: ",ray.get_collision_point().y," - player position: ",self.position.y)
 	while abs(ray.get_collision_point().y - self.position.y)  < 512:
 		ray.force_raycast_update()
-
 		#print(abs(ray.get_collision_point().y - self.position.y))
 		new_position.y += 128 
 		self.position = Vector2(new_position.x ,new_position.y)
 	input_enabled = true
 	_current_state = _STATES.IDLE
-
 	
 func facing_direction(direction: float) -> void:
 	if direction > 0.0 and input_enabled:
@@ -211,3 +205,14 @@ func death_out_of_screen() -> void:
 	elif name == "Player2":		
 		if screen_position.x - 7100 < self.get_position().x and _current_state != _STATES.DEATH:
 			die()
+
+func power_up_speed() -> void:
+	boost_enabled = true
+	speed.x = speed.x + 1000
+	$PowerUpTimer.start()
+	print(speed.x)
+
+func _on_PowerUpTimer_timeout():
+	speed.x = speed.x - 1000
+	boost_enabled = false
+	print(speed.x)
