@@ -175,13 +175,13 @@ func respawn() -> void :
 	self.position = Vector2(new_position.x ,new_position.y)
 	ray.force_raycast_update()
 	#print(ray.get_collider(), ray.get_collision_point())
-	print(ray.get_collision_point().y - self.position.y)
+	#print(ray.get_collision_point().y - self.position.y)
 	if ray.get_collider() == null:
 		new_position.x += 1000 
 		self.position = Vector2(new_position.x ,new_position.y)
 		#print(abs(ray.get_collision_point().y - self.position.y))
 	ray.force_raycast_update()
-	print("collision point: ",ray.get_collision_point().y," - player position: ",self.position.y)
+	#("collision point: ",ray.get_collision_point().y," - player position: ",self.position.y)
 	while abs(ray.get_collision_point().y - self.position.y)  < 512:
 		ray.force_raycast_update()
 		#print(abs(ray.get_collision_point().y - self.position.y))
@@ -201,5 +201,9 @@ func facing_direction(direction: float) -> void:
 
 func death_out_of_screen() -> void:
 	screen_position = main_camera.get_position()
-	if screen_position.x + 7100 < self.get_position().x and _current_state != _STATES.DEATH:
-		die()
+	if name == "Player":
+		if screen_position.x + 7100 < self.get_position().x and _current_state != _STATES.DEATH:
+			die()
+	elif name == "Player2":		
+		if screen_position.x - 7100 > self.get_position().x and _current_state != _STATES.DEATH:
+			die()
