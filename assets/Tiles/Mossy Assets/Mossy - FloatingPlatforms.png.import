@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player2.png-a1ad868237b0b0d23d0244c80cfc55a4.stex"
+path="res://.import/Mossy - FloatingPlatforms.png-4d27e82e33677606b8030a1ce3caeea4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player2.png"
-dest_files=[ "res://.import/player2.png-a1ad868237b0b0d23d0244c80cfc55a4.stex" ]
+source_file="res://assets/Tiles/Mossy Assets/Mossy - FloatingPlatforms.png"
+dest_files=[ "res://.import/Mossy - FloatingPlatforms.png-4d27e82e33677606b8030a1ce3caeea4.stex" ]
 
 [params]
 
