@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DemoBackground.PNG-ec20ed9fe75f5af9489f4fcde770e48f.stex"
+path="res://.import/Mossy - Hanging Plants.png-4a9762ffbff4168a98f20bd141ff3b2e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DemoBackground.PNG"
-dest_files=[ "res://.import/DemoBackground.PNG-ec20ed9fe75f5af9489f4fcde770e48f.stex" ]
+source_file="res://assets/Tiles/Mossy Assets/Mossy - Hanging Plants.png"
+dest_files=[ "res://.import/Mossy - Hanging Plants.png-4a9762ffbff4168a98f20bd141ff3b2e.stex" ]
 
 [params]
 

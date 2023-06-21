@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mossy - MossyHills.png-7f81ed46e7b6aafb4e60c6d832622998.stex"
+path="res://.import/Mossy - Decorations&Hazards.png-2ea9aa77974c7eede8cedc8d753421b8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tiles/Mossy Assets/Mossy Tileset/Mossy - MossyHills.png"
-dest_files=[ "res://.import/Mossy - MossyHills.png-7f81ed46e7b6aafb4e60c6d832622998.stex" ]
+source_file="res://assets/Tiles/Mossy Assets/Mossy - Decorations&Hazards.png"
+dest_files=[ "res://.import/Mossy - Decorations&Hazards.png-2ea9aa77974c7eede8cedc8d753421b8.stex" ]
 
 [params]
 
