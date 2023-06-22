@@ -141,6 +141,8 @@ func die() -> void:
 	input_enabled = false
 	_current_state = _STATES.DEATH
 	$Timer.start()
+	if is_instance_valid(player_weapon):
+		player_weapon.queue_free()
 	if name == "Player":
 		main_camera.set_target(2)
 		PlayerData.playerOneActive = false
@@ -163,6 +165,8 @@ func respawn_position():
 	elif name == "Player2":
 		new_position.x = screen_position.x + 6000 
 	new_position.y = screen_position.y - 3000
+	if abs(new_position.y) <  1000:
+		new_position.y -= 3000
 	return  new_position
 	
 func respawn() -> void :
