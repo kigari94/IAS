@@ -10,11 +10,11 @@ var time: int
 
 func _ready():
 	countdownSound = AudioStreamPlayer.new()
-	countdownSound.bus = "Music"
+	countdownSound.bus = "Sounds"
 	add_child(countdownSound)
 	countdownSound.stream = preload("res://assets/Sounds/EFFEKT/arcade-countdown.wav")
 	countdownSound.play()
-
+	
 func _process(_delta)-> void:
 	if PlayerData.countDownActive:
 		showOverlay()
@@ -24,7 +24,6 @@ func pause(value)-> void:
 
 func showOverlay()-> void:
 	pause(true)
-	
 	time = timer.time_left
 	counter.text = str(time)
 	if time == 0:
