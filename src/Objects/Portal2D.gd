@@ -7,6 +7,9 @@ const winnerScene = preload(pathToWinnerScreen)
 onready var anim_player: AnimationPlayer = get_node("AnimationPlayer")
 export var playerName: String
 
+func _ready():
+	anim_player.play("Portal_Animation")
+
 func _get_configuration_warning() -> String:
 	return "A scene needs to be selected" if not playerName else ""
 
