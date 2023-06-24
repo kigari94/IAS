@@ -55,11 +55,11 @@ tile_data = PoolIntArray( -1834694, 0, 0, -1834686, 0, 1, -1834678, 0, 2, -13104
 [node name="PortalLeft" parent="." instance=ExtResource( 8 )]
 position = Vector2( -66294, -1300 )
 collision_mask = 8
-playerName = "Two"
+playerName = "Orange"
 
 [node name="PortalRight" parent="." instance=ExtResource( 8 )]
 position = Vector2( 65827, -1300 )
-playerName = "One"
+playerName = "Green"
 
 [node name="Player2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1855, 102 )
