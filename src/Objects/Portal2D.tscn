@@ -1,10 +1,27 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/favpng_portal-2-sprite.png" type="Texture" id=1]
+[ext_resource path="res://assets/Animations/Portal_v01.png" type="Texture" id=1]
 [ext_resource path="res://src/Objects/Portal2D.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 232.054
+
+[sub_resource type="Animation" id=5]
+resource_name = "Portal_Animation"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("FavpngPortal-2-sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -31,6 +48,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FavpngPortal-2-sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -95,10 +124,13 @@ script = ExtResource( 2 )
 
 [node name="FavpngPortal-2-sprite" type="Sprite" parent="."]
 position = Vector2( 0, -283 )
+scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
+hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -279 )
+position = Vector2( 93, -252 )
+scale = Vector2( 1.8, 1.8 )
 shape = SubResource( 1 )
 
 [node name="TransitionLayer" type="CanvasLayer" parent="."]
@@ -112,6 +144,8 @@ color = Color( 0.0352941, 0.0352941, 0.0352941, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Start"
+playback_speed = 0.6
+anims/Portal_Animation = SubResource( 5 )
 anims/RESET = SubResource( 2 )
 anims/Start = SubResource( 3 )
 anims/fade_in = SubResource( 4 )

@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=56 format=2]
 
-[ext_resource path="res://assets/Tiles/Mossy Assets/Mossy - TileSet.png" type="Texture" id=1]
-[ext_resource path="res://assets/Tiles/Mossy Assets/Mossy - FloatingPlatforms.png" type="Texture" id=2]
+[ext_resource path="res://assets/Tiles/tileset-03.png" type="Texture" id=1]
+[ext_resource path="res://assets/Tiles/tileset_up_02.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 512, 0, 512, 512, 0, 512 )
