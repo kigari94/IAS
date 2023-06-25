@@ -117,7 +117,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=6]
 resource_name = "Run_Animation"
-length = 0.8
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("PlayerAnimation:frame")
 tracks/0/interp = 1
@@ -125,7 +125,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 10, 11 ]
