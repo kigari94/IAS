@@ -184,27 +184,21 @@ position = Vector2( 48052, -4053 )
 
 [node name="PowerUp" parent="PowerUps" instance=ExtResource( 13 )]
 position = Vector2( 2, -4188 )
-rotation = -3.14159
 
 [node name="PowerUp2" parent="PowerUps" instance=ExtResource( 13 )]
 position = Vector2( 24924, -2550 )
 
 [node name="PowerUp3" parent="PowerUps" instance=ExtResource( 13 )]
 position = Vector2( -4879, -1993 )
-rotation = -3.14159
 
 [node name="PowerUp4" parent="PowerUps" instance=ExtResource( 13 )]
 position = Vector2( -24542, -3118 )
-rotation = -3.14159
 
 [node name="PowerUp6" parent="PowerUps" instance=ExtResource( 13 )]
 position = Vector2( -46277, -4628 )
-rotation = -3.14159
 
 [node name="PowerUp5" parent="PowerUps" instance=ExtResource( 13 )]
 position = Vector2( 4868, -1938 )
-rotation = -3.14159
 
 [node name="PowerUp7" parent="PowerUps" instance=ExtResource( 13 )]
 position = Vector2( 46981, -4698 )
-rotation = -3.14159
