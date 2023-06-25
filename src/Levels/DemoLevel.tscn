@@ -101,22 +101,22 @@ script = ExtResource( 10 )
 [node name="StachelGruppe" type="Node2D" parent="."]
 
 [node name="Node2D" parent="StachelGruppe" instance=ExtResource( 12 )]
-position = Vector2( -3231, -2111 )
+position = Vector2( -3231, -2135 )
 rotation = -3.14159
 
 [node name="Node2D2" parent="StachelGruppe" instance=ExtResource( 12 )]
-position = Vector2( -1882, -2091 )
+position = Vector2( -1882, -2125 )
 rotation = -3.14159
 
 [node name="Node2D5" parent="StachelGruppe" instance=ExtResource( 12 )]
-position = Vector2( -30651, -2380 )
+position = Vector2( -30646, -2384 )
 rotation = -1.5708
 
 [node name="Node2D6" parent="StachelGruppe" instance=ExtResource( 12 )]
 position = Vector2( -23880, -2511 )
 
 [node name="Node2D3" parent="StachelGruppe" instance=ExtResource( 12 )]
-position = Vector2( 730, -3088 )
+position = Vector2( 716, -3147 )
 rotation = -3.14159
 
 [node name="Node2D7" parent="StachelGruppe" instance=ExtResource( 12 )]
@@ -124,14 +124,14 @@ position = Vector2( -43114, -3658 )
 rotation = -3.14159
 
 [node name="Node2D8" parent="StachelGruppe" instance=ExtResource( 12 )]
-position = Vector2( -45447, -4092 )
+position = Vector2( -45466, -4053 )
 
 [node name="Node2D9" parent="StachelGruppe" instance=ExtResource( 12 )]
 position = Vector2( -41799, -3663 )
 rotation = -3.14159
 
 [node name="Node2D4" parent="StachelGruppe" instance=ExtResource( 12 )]
-position = Vector2( -668, -3093 )
+position = Vector2( -667, -3145 )
 rotation = -3.14159
 
 [node name="Node2D10" parent="StachelGruppe" instance=ExtResource( 12 )]
@@ -161,18 +161,18 @@ rotation = 1.5708
 position = Vector2( 25774, -1999 )
 
 [node name="Node2D17" parent="StachelGruppe" instance=ExtResource( 12 )]
-position = Vector2( 1883, -2096 )
+position = Vector2( 1883, -2109 )
 rotation = -3.14159
 
 [node name="Node2D18" parent="StachelGruppe" instance=ExtResource( 12 )]
-position = Vector2( 3323, -2071 )
+position = Vector2( 3271, -2116 )
 rotation = -3.14159
 
 [node name="Node2D19" parent="StachelGruppe" instance=ExtResource( 12 )]
-position = Vector2( -25246, -2559 )
+position = Vector2( -25253, -2520 )
 
 [node name="Node2D20" parent="StachelGruppe" instance=ExtResource( 12 )]
-position = Vector2( -47194, -4085 )
+position = Vector2( -47195, -4056 )
 
 [node name="Node2D21" parent="StachelGruppe" instance=ExtResource( 12 )]
 position = Vector2( 46149, -4064 )

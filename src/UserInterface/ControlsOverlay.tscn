@@ -17,6 +17,7 @@ script = ExtResource( 1 )
 margin_right = 1920.0
 margin_bottom = 1080.0
 texture = ExtResource( 4 )
+stretch_mode = 4
 
 [node name="KeyboardTexture" type="TextureRect" parent="."]
 anchor_right = 1.0
